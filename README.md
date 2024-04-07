@@ -18,3 +18,5 @@ You can find backups for November 2023 - April 2024 (first days of the month, no
 I did not keep backups of solve data because I'm lazy.
 
 You can view backups by clonning the repo locally and replacing the backup file as "data/leaderboard.json" and running it on your server.
+
+I might add a button to load older leaderboard data from file, but I'm lazy.
