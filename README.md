@@ -1,24 +1,16 @@
 # betterLeaderboard
-Unofficial leaderboard for sliding puzzle simulator slidysim.com 
+Unofficial leaderboard for the sliding puzzle simulator slidysim.com 
 
-https://dphdmn.github.io/betterLeaderboard/
+Access it here: [BetterLeaderboard](https://dphdmn.github.io/betterLeaderboard/)
 
-# 29.02.2024 note
+## February 29, 2024 Update
+Transitioned updates from hourly to every 6 hours to reduce GitHub spam and minimize annoyance. There wasn't significant necessity for frequent updates initially. Considering a potential shift to 24-hour intervals later, but for now, 6 hours seems optimal.
 
-Changed update from 1 per hour to 1 per 6 hours to make it spam less on github and to stop it from annoying constantly. 
-Besides, there was not much reason to update it very often in the first place.
-Might change to 1/24 hours later, but I hope 1/6 hours would be optimal.
+## April 7, 2024 Update
+Performed repository cleanup to manage the burgeoning size (3 Gb for 6 months), primarily attributed to hourly updates before March. With the adjustment to 6-hour intervals, repository growth is now more manageable. 
 
-# 07.04.2024 note
+Backups spanning November 2023 to April 2024 (excluding solve data) are available [here](https://drive.google.com/file/d/1dzUc0bwpY4PUppNLjEXhW1WWHCu7CL-V/view?usp=sharing). Solve data backups were not retained due to laziness.
 
-Cleaned the repo. I'll probably be doing that from time to time, because leaderboard data is very large. After 6 months the repo size became more than 3 Gb. 
+To view backups, clone the repository locally, replace the backup file as "data/leaderboard.json", and run it on your server.
 
-This is mostly due to the fact that it was hourly updated before march. Now it should grow 6 times slower, which is fine.
-
-You can find backups for November 2023 - April 2024 (first days of the month, no solve data) [here](https://drive.google.com/file/d/1dzUc0bwpY4PUppNLjEXhW1WWHCu7CL-V/view?usp=sharing)
-
-I did not keep backups of solve data because I'm lazy.
-
-You can view backups by clonning the repo locally and replacing the backup file as "data/leaderboard.json" and running it on your server.
-
-I might add a button to load older leaderboard data from file, but I'm lazy.
+Considering adding a button for loading older leaderboard data from a file, but, well, laziness persists.
