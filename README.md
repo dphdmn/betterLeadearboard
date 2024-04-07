@@ -11,7 +11,9 @@ Might change to 1/24 hours later, but I hope 1/6 hours would be optimal.
 
 # 07.04.2024 note
 
-Cleaned the repo. I'll probably be doing that from time to time, because leaderboard data is very large.
+Cleaned the repo. I'll probably be doing that from time to time, because leaderboard data is very large. After 6 months the repo size became more than 3 Gb. 
+
+This is mostly due to the fact that it was hourly updated before march. Now it should grow 6 times slower, which is fine.
 
 You can find backups for November 2023 - April 2024 (first days of the month, no solve data) [here](https://drive.google.com/file/d/1dzUc0bwpY4PUppNLjEXhW1WWHCu7CL-V/view?usp=sharing)
 
