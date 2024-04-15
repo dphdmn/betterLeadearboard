@@ -14,3 +14,6 @@ Backups spanning November 2023 to April 2024 (excluding solve data) are availabl
 To view backups, clone the repository locally, replace the backup file as "data/leaderboard.json", and run it on your server.
 
 Considering adding a button for loading older leaderboard data from a file, but, well, laziness persists.
+
+## Update - April 16, 2024
+v.1.1.0 - You can now [submit your youtube videos to leaderboard](https://docs.google.com/forms/d/e/1FAIpQLSd14jEa6wVTrRkgiuEBKdC8nvdU4JjRfVuOIuPTtkl1zzzKxA/viewform).
