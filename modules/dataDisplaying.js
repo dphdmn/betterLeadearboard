@@ -194,11 +194,12 @@ function createSheet(sortedLists, sheetType) {
                 if (!debugMode){
                     const scorehash = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType).hash;
                     const videolink = videoData[scorehash];
+                    makeyoutubelink = false;
                     if (videolink){
                         scoreCellElement.classList.add("clickable");
                         scoreCellElement.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCellElement.firstChild.textContent}`;
+                        makeyoutubelink = true;
                     }
-                    let makeyoutubelink = true;
                     if (request.gameMode === "Standard" && !isAverage) {
                         const solution = getSolutionForScore(item);
                         if (solution !== -1) {
@@ -396,11 +397,12 @@ function createSheetNxM(WRList) {
                     if (!debugMode){
                         const scorehash = getScoreID(result.time, result.moves, result.width, result.height, result.displayType, result.nameFilter, result.controls, result.timestamp, scoreType).hash;
                         const videolink = videoData[scorehash];
+                        let makeyoutubelink = false;
                         if (videolink){
                             cell.classList.add("clickable");
                             cell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${cell.firstChild.textContent}`;
+                            makeyoutubelink = true;
                         }
-                        let makeyoutubelink = true;
                         if (request.gameMode === "Standard") {
                             const solution = getSolutionForScore(result);
                             if (solution !== -1) {
@@ -621,11 +623,12 @@ function createSheetRankings(playerScores) {
                                 if (!debugMode){
                                     const scorehash = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType).hash;
                                     const videolink = videoData[scorehash];
+                                    let makeyoutubelink = false;
                                     if (videolink){
                                         scoreCell.classList.add("clickable");
                                         scoreCell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
+                                        makeyoutubelink = true;
                                     }
-                                    let makeyoutubelink = true;
                                     if (item.gameMode === "Standard" && !isAverage) {
                                         const solution = getSolutionForScore(item);
                                         if (solution !== -1) {
@@ -1018,13 +1021,13 @@ function getScoreTitle(videolink, width, height, displayType, username, controls
         tierTitleSpan.appendChild(tierTitleSpanWR);
     }
     tierTitleSpan.innerHTML += `${width}x${height} (${displayType}) ${solveByString} ${username}<br>${scoreType} PB / ${controls} / ${formatTimestamp(timestamp)}`;
-    if (videolink !== 1){
+    if (videolink !== -1){
         tierTitleSpan.classList.add("clickable");
         tierTitleSpan.addEventListener('click', function () {
             window.open(videolink, '_blank');
         });
+        tierTitleSpan.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${tierTitleSpan.innerHTML}`;
     }
-    tierTitleSpan.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${tierTitleSpan.innerHTML}`;
     return tierTitleSpan;
 }
 
@@ -1697,11 +1700,12 @@ function populateTableHistory(records, recordsListWR, scoreType, table, reverse)
             if (!debugMode){
                 const scorehash = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType).hash;
                     const videolink = videoData[scorehash];
+                    let makeyoutubelink = false;
                     if (videolink){
                         scoreCell.classList.add("clickable");
                         scoreCell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
-                    }
-                    let makeyoutubelink = true;
+                        makeyoutubelink = true;
+                    }           
                 if (item.gameMode === "Standard" && !isAverage) {
                     const solution = getSolutionForScore(item);
                     if (solution !== -1) {
