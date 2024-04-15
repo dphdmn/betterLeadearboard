@@ -87,8 +87,9 @@
             autocomplete="off" />
           <div id="suggestionsContainer"></div>
         </div>
-        <button id="createCustomReplayButton">Generate Replay</button>
+        <button id="createCustomReplayButton">Replay</button>
         <button id="enableDebugMode">Debug</button>
+        <button onclick="solveData.length=0; sendMyRequest();this.disabled=true; this.textContent='[Refresh!]'; this.style.backgroundColor='gray';">YT only</button>
       </div>
       <div id="solveTypeDiv">
         <div class="tabs">
