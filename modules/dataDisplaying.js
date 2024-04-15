@@ -191,16 +191,44 @@ function createSheet(sortedLists, sheetType) {
                 tableRow.addEventListener('mouseover', () => {
                     tableRow.classList.add("highlightedCell");
                 });
-                if (request.gameMode === "Standard" && !isAverage) {
-                    const solution = getSolutionForScore(item);
-                    if (solution !== -1) {
+                if (!debugMode){
+                    const scorehash = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType).hash;
+                    const videolink = videoData[scorehash];
+                    if (videolink){
                         scoreCellElement.classList.add("clickable");
-                        scoreCellElement.firstChild.textContent = replayAvailableIcon + scoreCellElement.firstChild.textContent;
-                        const scoreTitle = getScoreTitle(item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, tierNameForReplay, isWRforReplay, scoreType);
-                        scoreCellElement.addEventListener('click', function (event) {
-                            makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
-                        });
+                        scoreCellElement.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCellElement.firstChild.textContent}`;
                     }
+                    let makeyoutubelink = true;
+                    if (request.gameMode === "Standard" && !isAverage) {
+                        const solution = getSolutionForScore(item);
+                        if (solution !== -1) {
+                            makeyoutubelink = false;
+                            scoreCellElement.classList.add("clickable");
+                            scoreCellElement.firstChild.textContent = replayAvailableIcon + scoreCellElement.firstChild.textContent;
+                            let videoLinkForReplay = -1;
+                            if (videolink){
+                                videoLinkForReplay = videolink
+                            }
+                            const scoreTitle = getScoreTitle(videoLinkForReplay, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, tierNameForReplay, isWRforReplay, scoreType);
+                            scoreCellElement.addEventListener('click', function (event) {
+                                makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
+                            });
+                        }
+                    }
+                    if (makeyoutubelink) {
+                        scoreCellElement.addEventListener('click', function () {
+                            window.open(videolink, '_blank');
+                        });
+                    }   
+                } else{
+                    scoreCellElement.classList.add("clickable");
+                    scoreCellElement.firstChild.textContent = getScoreIDIcon + scoreCellElement.firstChild.textContent;
+                    scoreCellElement.addEventListener('click', function () {
+                        const scoreID = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType);
+                        navigator.clipboard.writeText(scoreID.hash);
+                        console.log(scoreID);
+                        console.log("Copied to clipboard");
+                    });
                 }
                 if (scoreType === "Time" && item.time > 59999) {
                     scoreCellElement.addEventListener('mouseover', () => {
@@ -365,16 +393,45 @@ function createSheetNxM(WRList) {
                     cell.setAttribute("class", "");
                 } else {
                     let newSize = result.width + "x" + result.height;
-                    if (request.gameMode === "Standard") {
-                        const solution = getSolutionForScore(result);
-                        if (solution !== -1) {
+                    if (!debugMode){
+                        const scorehash = getScoreID(result.time, result.moves, result.width, result.height, result.displayType, result.nameFilter, result.controls, result.timestamp, scoreType).hash;
+                        const videolink = videoData[scorehash];
+                        if (videolink){
                             cell.classList.add("clickable");
-                            cell.firstChild.textContent = replayAvailableIcon + cell.firstChild.textContent;
-                            const scoreTitle = getScoreTitle(result.width, result.height, result.displayType, result.nameFilter, result.controls, result.timestamp, tierName, isWR, scoreType);
-                            cell.addEventListener('click', function (event) {
-                                makeReplay(solution, event, result.tps, result.width, result.height, scoreTitle);
-                            });
+                            cell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${cell.firstChild.textContent}`;
                         }
+                        let makeyoutubelink = true;
+                        if (request.gameMode === "Standard") {
+                            const solution = getSolutionForScore(result);
+                            if (solution !== -1) {
+                                makeyoutubelink = false;
+                                let videoLinkForReplay = -1;
+                                if (videolink){
+                                    videoLinkForReplay = videolink;
+                                }
+                                cell.classList.add("clickable");
+                                cell.firstChild.textContent = replayAvailableIcon + cell.firstChild.textContent;
+                                const scoreTitle = getScoreTitle(videoLinkForReplay, result.width, result.height, result.displayType, result.nameFilter, result.controls, result.timestamp, tierName, isWR, scoreType);
+                                cell.addEventListener('click', function (event) {
+                                    makeReplay(solution, event, result.tps, result.width, result.height, scoreTitle);
+                                });
+                            }
+                        }
+                        if (makeyoutubelink) {
+                            cell.addEventListener('click', function () {
+                                window.open(videolink, '_blank');
+                            });
+                        } 
+                    }
+                    else{
+                        cell.classList.add("clickable");
+                        cell.firstChild.textContent = getScoreIDIcon + cell.firstChild.textContent;
+                        cell.addEventListener('click', function () {
+                            const scoreID = getScoreID(result.time, result.moves, result.width, result.height, result.displayType, result.nameFilter, result.controls, result.timestamp, scoreType);
+                            navigator.clipboard.writeText(scoreID.hash);
+                            console.log(scoreID);
+                            console.log("Copied to clipboard");
+                        });
                     }
                     let extraInfo = "";
                     if (scoreType === "Time" && result.time > 59999) {
@@ -561,16 +618,44 @@ function createSheetRankings(playerScores) {
                                 scoreCell.classList.add("no-box-shadow");
                                 scoreCell.innerHTML = "-";
                             } else {
-                                if (item.gameMode === "Standard" && !isAverage) {
-                                    const solution = getSolutionForScore(item);
-                                    if (solution !== -1) {
+                                if (!debugMode){
+                                    const scorehash = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType).hash;
+                                    const videolink = videoData[scorehash];
+                                    if (videolink){
                                         scoreCell.classList.add("clickable");
-                                        scoreCell.textContent = replayAvailableIcon + scoreCell.textContent;
-                                        const scoreTitle = getScoreTitle(item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreData.scoreTier, scoreData.scorePercentage === 100, scoreType);
-                                        scoreCell.addEventListener('click', (event) => {
-                                            makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
-                                        });
+                                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
                                     }
+                                    let makeyoutubelink = true;
+                                    if (item.gameMode === "Standard" && !isAverage) {
+                                        const solution = getSolutionForScore(item);
+                                        if (solution !== -1) {
+                                            makeyoutubelink = false;
+                                            let videoLinkForReplay = -1;
+                                            if (videolink){
+                                                videoLinkForReplay = videolink
+                                            }
+                                            scoreCell.classList.add("clickable");
+                                            scoreCell.textContent = replayAvailableIcon + scoreCell.textContent;
+                                            const scoreTitle = getScoreTitle(videoLinkForReplay, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreData.scoreTier, scoreData.scorePercentage === 100, scoreType);
+                                            scoreCell.addEventListener('click', (event) => {
+                                                makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
+                                            });
+                                        }
+                                    }
+                                    if (makeyoutubelink) {
+                                        scoreCell.addEventListener('click', function () {
+                                            window.open(videolink, '_blank');
+                                        });
+                                    }   
+                                } else{
+                                    scoreCell.classList.add("clickable");
+                                    scoreCell.firstChild.textContent = getScoreIDIcon + scoreCell.firstChild.textContent;
+                                    scoreCell.addEventListener('click', function () {
+                                        const scoreID = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType);
+                                        navigator.clipboard.writeText(scoreID.hash);
+                                        console.log(scoreID);
+                                        console.log("Copied to clipboard");
+                                    });
                                 }
                                 scoreCell.addEventListener('mouseover', () => {
                                     tooltip.innerHTML = extraInfo + scoreData.id + byString + item.nameFilter + "<br>" + getControlsAndDate(item.timestamp, item.controls);
@@ -923,7 +1008,7 @@ function getBestValue(data, scoreType, width, height) {
     return bestValue;
 }
 
-function getScoreTitle(width, height, displayType, username, controls, timestamp, scoreTier, isWR, scoreType) {
+function getScoreTitle(videolink, width, height, displayType, username, controls, timestamp, scoreTier, isWR, scoreType) {
     tierTitleSpan = document.createElement("span");
     tierTitleSpan.classList.add(scoreTier);
     if (isWR) {
@@ -933,6 +1018,13 @@ function getScoreTitle(width, height, displayType, username, controls, timestamp
         tierTitleSpan.appendChild(tierTitleSpanWR);
     }
     tierTitleSpan.innerHTML += `${width}x${height} (${displayType}) ${solveByString} ${username}<br>${scoreType} PB / ${controls} / ${formatTimestamp(timestamp)}`;
+    if (videolink !== 1){
+        tierTitleSpan.classList.add("clickable");
+        tierTitleSpan.addEventListener('click', function () {
+            window.open(videolink, '_blank');
+        });
+    }
+    tierTitleSpan.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${tierTitleSpan.innerHTML}`;
     return tierTitleSpan;
 }
 
@@ -1602,16 +1694,44 @@ function populateTableHistory(records, recordsListWR, scoreType, table, reverse)
             const scoreCell = createTableCellScore(scoreString, 'score', "grayColor");
             const tier = tierInfo[1];
             const bestValue = tierInfo[2];
-            if (item.gameMode === "Standard" && !isAverage) {
-                const solution = getSolutionForScore(item);
-                if (solution !== -1) {
-                    scoreCell.classList.add("clickable");
-                    scoreCell.firstChild.textContent = replayAvailableIcon + scoreCell.firstChild.textContent;
-                    const scoreTitle = getScoreTitle(item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, tier, percentage === 100, scoreType);
-                    scoreCell.addEventListener('click', (event) => {
-                        makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
-                    });
+            if (!debugMode){
+                const scorehash = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType).hash;
+                    const videolink = videoData[scorehash];
+                    if (videolink){
+                        scoreCell.classList.add("clickable");
+                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
+                    }
+                    let makeyoutubelink = true;
+                if (item.gameMode === "Standard" && !isAverage) {
+                    const solution = getSolutionForScore(item);
+                    if (solution !== -1) {
+                        makeyoutubelink = false;
+                        let videoLinkForReplay = -1;
+                        if (videolink){
+                            videoLinkForReplay = videolink
+                        }
+                        scoreCell.classList.add("clickable");
+                        scoreCell.firstChild.textContent = replayAvailableIcon + scoreCell.firstChild.textContent;
+                        const scoreTitle = getScoreTitle(videoLinkForReplay, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, tier, percentage === 100, scoreType);
+                        scoreCell.addEventListener('click', (event) => {
+                            makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
+                        });
+                    }
                 }
+                if (makeyoutubelink) {
+                    scoreCell.addEventListener('click', function () {
+                        window.open(videolink, '_blank');
+                    });
+                }   
+            } else{
+                scoreCell.classList.add("clickable");
+                scoreCell.firstChild.textContent = getScoreIDIcon + scoreCell.firstChild.textContent;
+                scoreCell.addEventListener('click', function () {
+                    const scoreID = getScoreID(item.time, item.moves, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreType);
+                    navigator.clipboard.writeText(scoreID.hash);
+                    console.log(scoreID);
+                    console.log("Copied to clipboard");
+                });
             }
             dataRow.appendChild(scoreCell);
             const controlsCell = document.createElement('td');

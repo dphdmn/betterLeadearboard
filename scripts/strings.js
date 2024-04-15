@@ -46,6 +46,7 @@ const displayTypeHeaderString = " display type, using ";
 const controlsTypeHeaderString = "controls";
 const lastLeaderboardUpdateString = "Last leaderboard update:";
 const replayAvailableIcon = "🥚";
+const getScoreIDIcon = "🆔";
 const defaultCounryEmoji = "🌍";
 const maxCategoriesForPopularString = "Max categories amount:";
 const onlyInterestingCategoriesPopular = `Only "Interesting" categroies`;

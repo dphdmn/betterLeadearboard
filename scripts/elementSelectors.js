@@ -36,3 +36,4 @@ const customRankingsRadio = document.getElementById('rankingsRadio3');
 const loadingPlaceHolder = document.getElementById('loadingPlaceHolder');
 const createCustomReplayButton = document.getElementById("createCustomReplayButton");
 const suggestionsContainer = document.getElementById("suggestionsContainer");
+const enableDebugMode = document.getElementById("enableDebugMode");

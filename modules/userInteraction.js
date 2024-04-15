@@ -104,7 +104,11 @@ function addListenersToElements() {
     addSuggestions();
     createCustomReplayButton.addEventListener("click", function () {
         makeReplay("", -1, 15000, 4, 4, "Custom");
-    })
+    });
+    enableDebugMode.addEventListener("click", function(){
+        debugMode = !debugMode;
+        sendMyRequest();
+    });
     document.addEventListener("keydown", function (event) {
         if (event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
             if (event.key === "ArrowLeft" || event.key === "ArrowRight") {

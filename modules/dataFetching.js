@@ -202,6 +202,7 @@ function processSolveData(data) {
         timestamp: entry[3]
     }));
     solveData = newArray;
+
     sendMyRequest();
     customRanksCheck();
     document.getElementById("controlsDiv").style.display = "block";

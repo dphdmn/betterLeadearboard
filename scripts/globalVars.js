@@ -16,7 +16,8 @@ const redGrids = "rgb(200, 103, 103)"; //default value for 1st grids
 const blueGrids = "rgb(141, 179, 255)"; //default value for 2nd grids
 const pinkNullColor = "rgb(248, 24, 148)"; //default value for latest element in grids-fringe
 const weight = 10; //default value for kinch weight
-
+var debugMode = false;
+const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHjRmOrHRfjqXAxYy8yDya2V3HFDATc6dlCRW3ExBNiXluvUVWfdQKEl375W9jW3lKpuvBKop6zEVb/pubhtml';
 //default request
 var request = {
     displayType: "Standard",

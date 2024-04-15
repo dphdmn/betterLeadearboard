@@ -185,6 +185,34 @@ function isInvalid(myvalue, scoreType) {
     }
 }
 
+//"Public" function to get unique ID for score
+function getScoreID(time, moves, width, height, displayType, nameFilter, controls, timestamp, scoreType) {
+    // Combine all objects from the variables
+    const scoreObject = {
+        time: time,
+        moves: moves,
+        width: width,
+        height: height,
+        displayType: displayType,
+        nameFilter: nameFilter,
+        controls: controls,
+        timestamp: timestamp,
+        scoreType: scoreType
+    };
+
+    // Convert object to string
+    const objStr = JSON.stringify(scoreObject);
+
+    // Calculate SHA-256 hash
+    const hash = sha256(objStr);
+
+    // Return as JSON string
+    return ({
+        scoreObject: scoreObject,
+        hash: hash
+    });
+}
+
 //_________________End of "Public" functions of this module_________________//
 
 //_________________"Private" functions (multiple usage)_________________
