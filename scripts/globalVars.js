@@ -17,6 +17,7 @@ const blueGrids = "rgb(141, 179, 255)"; //default value for 2nd grids
 const pinkNullColor = "rgb(248, 24, 148)"; //default value for latest element in grids-fringe
 const weight = 10; //default value for kinch weight
 var debugMode = false;
+const youtubeLogoLink="https://www.gstatic.com/youtube/img/creator/favicon/favicon.ico";
 //default request
 var request = {
     displayType: "Standard",

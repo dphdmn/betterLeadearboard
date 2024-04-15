@@ -197,7 +197,7 @@ function createSheet(sortedLists, sheetType) {
                     makeyoutubelink = false;
                     if (videolink){
                         scoreCellElement.classList.add("clickable");
-                        scoreCellElement.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCellElement.firstChild.textContent}`;
+                        scoreCellElement.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${scoreCellElement.firstChild.textContent}`;
                         makeyoutubelink = true;
                     }
                     if (request.gameMode === "Standard" && !isAverage) {
@@ -400,7 +400,7 @@ function createSheetNxM(WRList) {
                         let makeyoutubelink = false;
                         if (videolink){
                             cell.classList.add("clickable");
-                            cell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${cell.firstChild.textContent}`;
+                            cell.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${cell.firstChild.textContent}`;
                             makeyoutubelink = true;
                         }
                         if (request.gameMode === "Standard") {
@@ -626,7 +626,7 @@ function createSheetRankings(playerScores) {
                                     let makeyoutubelink = false;
                                     if (videolink){
                                         scoreCell.classList.add("clickable");
-                                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
+                                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
                                         makeyoutubelink = true;
                                     }
                                     if (item.gameMode === "Standard" && !isAverage) {
@@ -1026,7 +1026,7 @@ function getScoreTitle(videolink, width, height, displayType, username, controls
         tierTitleSpan.addEventListener('click', function () {
             window.open(videolink, '_blank');
         });
-        tierTitleSpan.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${tierTitleSpan.innerHTML}`;
+        tierTitleSpan.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${tierTitleSpan.innerHTML}`;
     }
     return tierTitleSpan;
 }
@@ -1703,7 +1703,7 @@ function populateTableHistory(records, recordsListWR, scoreType, table, reverse)
                     let makeyoutubelink = false;
                     if (videolink){
                         scoreCell.classList.add("clickable");
-                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
+                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
                         makeyoutubelink = true;
                     }           
                 if (item.gameMode === "Standard" && !isAverage) {
