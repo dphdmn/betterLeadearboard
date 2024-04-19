@@ -2,6 +2,8 @@
 Unofficial leaderboard for the sliding puzzle simulator at slidysim.com. 
 
 Access it [here](https://dphdmn.github.io/betterLeaderboard/).
+
+
 [submit your youtube videos to leaderboard](https://docs.google.com/forms/d/e/1FAIpQLSd14jEa6wVTrRkgiuEBKdC8nvdU4JjRfVuOIuPTtkl1zzzKxA/viewform).
 
 ## Update - February 29, 2024
