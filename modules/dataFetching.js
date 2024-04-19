@@ -41,7 +41,7 @@ function processJSON(data) {
     leaderboardData = newArray;
     fullUniqueNames = getUniqueNames(leaderboardData).sort();
     addListenersToElements();
-    lastestRecordTime = formatTimestampWithTime(getHighestTimestampValue(leaderboardData));
+    latestRecordTime = formatTimestampWithTime(getHighestTimestampValue(leaderboardData));
     radio4.checked = true; //ctrl+T bug fix
     loadCompressedJSON(solveDataPath, processSolveData);
 }

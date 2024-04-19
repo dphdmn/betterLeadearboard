@@ -851,6 +851,34 @@ function formatTimestampWithTime(timestamp) {
     return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
 }
 
+//"Public" (helper) function to format timestamp compared to current Time
+function getTimeAgo(timestamp) {
+    const currentTime = new Date().getTime();
+    const recordTime = new Date(timestamp).getTime();
+    const timeDifference = currentTime - recordTime;
+
+    // Convert time difference to seconds
+    const seconds = Math.floor(timeDifference / 1000);
+    
+    if (seconds < 60) {
+        return `${seconds} second${seconds === 1 ? '' : 's'} ago`;
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) {
+        return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+    }
+
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) {
+        return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+    }
+
+    const days = Math.floor(hours / 24);
+    return `${days} day${days === 1 ? '' : 's'} ago`;
+}
+
+
 //"Public" (helper) function to get current limit of scores to display
 function getTierPercentageLimit() {
     if (tierLimit === "Any") {
@@ -1359,7 +1387,14 @@ function generateFormattedString(request) {
     }
     formattedParts.push(`<br><h2>${doneWithString} ` + selectString + displayTypeHeaderString);
     formattedParts.push(`<span class="pinktext" style="font-weight: 700;">${selectControlTypeString}</span> ${controlsTypeHeaderString}</h2>`);
-    formattedParts.push(`<span class="leaderboardUpdateSpan">${lastLeaderboardUpdateString} ${lastestRecordTime}</span>`);
+    if(latestRecordTime){
+        let timeAgo = getTimeAgo(new Date(latestRecordTime));
+        formattedParts.push(`<span class="leaderboardUpdateSpan">${lastLeaderboardUpdateString} ${timeAgo}</span>`);
+        if (timeAgo.includes("days")){
+            formattedParts.push(`<span class="leaderboardUpdateSpan"><a style="color: red" href="${leaderboardUpdatesInfoLink}">${leaderboardUpdatesInfoText}</a></span>`);
+        }
+    }
+    formattedParts.push(`<span class="leaderboardUpdateSpan"><a style="color: #FF88BB" href="${submitVideoLink}">${submitVideoText}</a></span>`);
     const finalString = `${formattedParts.join(' ')}`;
     leaderboardName.innerHTML = finalString;
     function displayTypeChanged() {
