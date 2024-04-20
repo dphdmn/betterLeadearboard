@@ -20,3 +20,8 @@ Considering adding a button for loading older leaderboard data from a file, but,
 
 ## Update - April 16, 2024
 v.1.1.0 - You can now [submit your youtube videos to leaderboard](https://docs.google.com/forms/d/e/1FAIpQLSd14jEa6wVTrRkgiuEBKdC8nvdU4JjRfVuOIuPTtkl1zzzKxA/viewform).
+
+## Update - April 21, 2024
+For some reason can't get access to website for many hours today. 
+Tried to clean deployment history (why is this even a thing again???).
+Hopefully it would help.
