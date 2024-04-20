@@ -25,3 +25,4 @@ v.1.1.0 - You can now [submit your youtube videos to leaderboard](https://docs.g
 For some reason can't get access to website for many hours today. 
 Tried to clean deployment history (why is this even a thing again???).
 Hopefully it would help.
+upd: Apparently I can't get access to all other github.io pages as well. What's going on?
