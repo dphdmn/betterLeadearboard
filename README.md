@@ -26,3 +26,4 @@ For some reason can't get access to website for many hours today.
 Tried to clean deployment history (why is this even a thing again???).
 Hopefully it would help.
 upd: Apparently I can't get access to all other github.io pages as well. What's going on?
+upd: Fixed for my side by using different VPN, great, thanks...
