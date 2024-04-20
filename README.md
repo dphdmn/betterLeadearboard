@@ -22,8 +22,4 @@ Considering adding a button for loading older leaderboard data from a file, but,
 v.1.1.0 - You can now [submit your youtube videos to leaderboard](https://docs.google.com/forms/d/e/1FAIpQLSd14jEa6wVTrRkgiuEBKdC8nvdU4JjRfVuOIuPTtkl1zzzKxA/viewform).
 
 ## Update - April 21, 2024
-For some reason can't get access to website for many hours today. 
-Tried to clean deployment history (why is this even a thing again???).
-Hopefully it would help.
-upd: Apparently I can't get access to all other github.io pages as well. What's going on?
-upd: Fixed for my side by using different VPN, great, thanks...
+Had some issues with loading github pages. Cleaned the history. Should not really affect anyone.
