@@ -10,7 +10,7 @@ slidingPuzzle.js
 */
 
 //"Public" function to make replay of the puzzle (event - click event on a button if there was one)
-function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTitle = "Custom", customScramble = -1) {
+function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTitle = "Custom", customScramble = -1, customMoveTimes = -1) {
     if (event !== -1) {
         event.stopPropagation();
     }
@@ -46,9 +46,9 @@ function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTit
     const allFringeSchemes = getAllFringeSchemes(gridsStates);
     renderMatrix(scrambleMatrix, allFringeSchemes, gridsStates[0]);
     if (!constantTPSCheckbox_last) {
-        animateMatrix(scoreTitle = scoreTitle, scrambleMatrix, solution, tps, allFringeSchemes, gridsStates);
+        animateMatrix(scoreTitle = scoreTitle, scrambleMatrix, solution, tps, allFringeSchemes, gridsStates, fasterLong = 0, firstMoveDelay = 500, customMoveTimes = customMoveTimes);
     } else {
-        animateMatrix(scoreTitle = scoreTitle, scrambleMatrix, solution, tps, allFringeSchemes, gridsStates, fasterLong = 1);
+        animateMatrix(scoreTitle = scoreTitle, scrambleMatrix, solution, tps, allFringeSchemes, gridsStates, fasterLong = 1, firstMoveDelay = 500, customMoveTimes = customMoveTimes);
     }
 }
 
@@ -88,6 +88,13 @@ function closeReplay() {
 //_________________End of "Public" functions of this module_________________//
 
 //_________________"Private" functions for makeReplay_________________
+
+
+function getMoveTimes() {
+    var userInput = prompt(moveTimesAsk);
+    var numbers = userInput.split(",").map(item => parseFloat(item.trim()));
+    return numbers;
+}
 
 function renderMatrix(matrix, allFringeSchemes, state) {
     width = matrix[0].length;
@@ -180,7 +187,7 @@ function applyColorAny(colorsMatrix, square, number, width, height, offsetW, off
     }
 }
 
-function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, gridsStates, fasterLong = 0, firstMoveDelay = 500) {
+function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, gridsStates, fasterLong = 0, firstMoveDelay = 500, customMoveTimes = -1) {
     clearOptimalSolver();
     const longerFasterFactor = 2;
     let isCustomReplay = false;
@@ -210,13 +217,14 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     solution = expandSolution(solution);
     const repeatedLengths = getRepeatedLengths(solution);
     const solLen = solution.length;
-    const baseDelayInMS = 1000000 / tps;
-    const delayForMove = baseDelayInMS * solLen / (solLen - repeatedLengths.repeatedWidth - repeatedLengths.repeatedHeight + repeatedLengths.repeatedWidth / k_width + repeatedLengths.repeatedHeight / k_height);
+    //const baseDelayInMS = 1000000 / tps;
+    const baseDelayInMS = 1000000*solLen/(tps*(solLen-1));
+    const delayForMove = baseDelayInMS * (solLen-1) / (solLen-1 - repeatedLengths.repeatedWidth - repeatedLengths.repeatedHeight + repeatedLengths.repeatedWidth / k_width + repeatedLengths.repeatedHeight / k_height);
     const shortDelayWidth = delayForMove / k_width;
     const shortDelayHeight = delayForMove / k_height;
     let delays = [delayForMove];
     let fakeTimes = [0];
-    for (let moveIndex = 1; moveIndex <= solLen; moveIndex++) {
+    for (let moveIndex = 1; moveIndex < solLen; moveIndex++) {
         if (solution[moveIndex] === solution[moveIndex - 1]) {
             if ('DU'.includes(solution[moveIndex])) delays.push(shortDelayHeight);
             if ('RL'.includes(solution[moveIndex])) delays.push(shortDelayWidth);
@@ -225,6 +233,12 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         }
         fakeTimes[moveIndex] = fakeTimes[moveIndex - 1] + delays[moveIndex];
     }
+    console.log(customMoveTimes);
+    console.log(fakeTimes);
+    if (customMoveTimes !== -1){
+        fakeTimes = customMoveTimes;
+    }
+    console.log(fakeTimes);
     let index = 0;
     let animationID = null;
     let startAnimationID = null;
@@ -256,20 +270,20 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
             .getTime();
         const elapsedTime = currentTime - startTime;
         if (tps < 1000) {
-            nextMoveCounter.innerHTML = nextMoveCoutDownText + ((fakeTimes[index] - elapsedTime) / 1000).toFixed(0) + " " + nextMoveCoutDownTextTwo;
+            nextMoveCounter.innerHTML = nextMoveCoutDownTextTwo;
         } else {
             nextMoveCounter.innerHTML = "";
         }
+
         while (elapsedTime > fakeTimes[index]) {
-            if (index < solLen) {
-                rewindSlider.value = index + 1;
-                makeMove();
-                updateRewindSliderMoves();
-            } else {
+            rewindSlider.value = index + 1;
+            makeMove();
+            updateRewindSliderMoves();
+            if (index === solLen) {
                 renderMatrix(matrix, allFringeSchemes, gridsStates[0]);
                 popupContainer.insertBefore(scoreHeader, popupContainer.firstChild);
-                makeReplayButton();
                 stopAnimation();
+                makeReplayButton();
                 break;
             }
         }
@@ -419,13 +433,23 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     constantTPSCheckboxLabel.htmlFor = "constantTPSCheckbox";
     popupContainerSettings.appendChild(constantTPSCheckbox);
     popupContainerSettings.appendChild(constantTPSCheckboxLabel);
+
+    let moveTimesButton = document.createElement("button");
+    moveTimesButton.textContent = moveTimesButtonText;
+    moveTimesButton.addEventListener("click", function (event) {
+        makeReplay(solution, event, tps, matrix[0].length, matrix.length, "Custom", stringScramble, customMoveTimes = getMoveTimes());
+    });
+    moveTimesButton.style.marginTop = "30px";
+    if (customMoveTimes !== -1){
+        moveTimesButton.innerHTML = moveTimesButtonTextChanged;
+    }
+    popupContainerSettings.appendChild(moveTimesButton);
     if (!isCustomReplay) {
         createCustomBasedOnThatButton = document.createElement("button");
         createCustomBasedOnThatButton.textContent = createCustomReplayButtonText;
         createCustomBasedOnThatButton.addEventListener("click", function (event) {
             makeReplay(solution, event, tps, matrix[0].length, matrix.length);
         });
-        createCustomBasedOnThatButton.style.marginTop = "30px";
         popupContainerSettings.appendChild(createCustomBasedOnThatButton);
     } else {
         //custom replay mode
@@ -617,7 +641,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     scoreHeader.style.borderRadius = "15px";
     scoreHeader.style.padding = "5px";
     const replayScoreStringSpan = document.createElement("span");
-    replayScoreStringSpan.textContent = `${formatTime(Math.round(fakeTimes[solLen]))} / ${solLen} / ${(tps / 1000).toFixed(3)}`;
+    replayScoreStringSpan.textContent = `${formatTime(Math.round(fakeTimes[solLen-1]))} / ${solLen} / ${(tps / 1000).toFixed(3)}`;
     scoreHeader.appendChild(replayScoreStringSpan);
     scoreHeader.appendChild(document.createElement("br"));
     scoreHeader.appendChild(scoreTitle);
@@ -645,12 +669,12 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         const mmdPercentage = mmd === highStringStats ? highStringStats : ((mmd * 100 / allMMD) - 100).toFixed(1) + "%";
         currentMMDValue.textContent = `${mmd === highStringStats ? highStringStats : mmd.toFixed(3)} (${mmdPercentage})`;
         allMMDValue.textContent = `${allMMD.toFixed(3)}`;
-        const allTime = formatTime(Math.round(fakeTimes[solLen]), false);
-        timeCurrentValue.textContent = `${aproxValueStats} ${formatTime(Math.round(fakeTimes[index]), false)}`;
+        const allTime = formatTime(Math.round(fakeTimes[solLen-1]), false);
+        timeCurrentValue.textContent = (currentMoves === "0") ? aproxValueStats + " 0.000" : `${aproxValueStats} ${formatTime(Math.round(fakeTimes[index-1]), false)}`;
         timeAllValue.textContent = allTime;
         const predictedMovecount = (mmd === highStringStats) ? "" : "(" + (mmd * md).toFixed(0) + "?)";
         allMovesValue.textContent = `${allMoves} ${predictedMovecount}`;
-        currentTPSValue.textContent = (currentMoves === "0") ? aproxValueStats + " 0.000" : `${aproxValueStats} ${(currentMoves * 1000 / fakeTimes[index]).toFixed(3)}`;
+        currentTPSValue.textContent = (currentMoves === "0") ? aproxValueStats + " 0.000" : `${aproxValueStats} ${(currentMoves * 1000 / fakeTimes[index-1]).toFixed(3)}`;
         AllTPSValue.textContent = (tps / 1000).toFixed(3);
     }
     rewindSlider.addEventListener('input', manualMoving);
@@ -681,12 +705,14 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     function toggleAnimationButton() {
         if (index === solLen) {
             makeStopButton();
+            rewindContainer.style.display = false;
             for (let moveAmount = index; moveAmount > 0; moveAmount--) {
                 reverseLastMove();
             }
             rewindSlider.value = 0;
             updateRewindSliderMoves();
             index = 0;
+            rewindContainer.style.display = true;
             runAnimation();
         } else {
             if (animationID) {
@@ -723,8 +749,11 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         rewindContainer.appendChild(closeButton);
     }
     function resumeAnimation() {
-        startTime = new Date()
-            .getTime() - fakeTimes[index];
+        startTime = new Date().getTime();
+        if (index !== 0) {
+            startTime = startTime - fakeTimes[index-1]
+        }
+         
         animationID = setInterval(updateAnimation, intervalTimeMS);
     }
     function runAnimation() {
