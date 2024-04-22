@@ -35,5 +35,5 @@ Example:
 
 - Click on 4x4 single 1.125 PB by me (dphdmn);
 - Enter custom movetimes as ``0, 7, 37, 67, 97, 127, 127, 188, 195, 225, 262, 345, 381, 467, 471, 487, 501, 526, 555, 592, 616, 742, 802, 831, 891, 915, 921, 968, 1005, 1019, 1027, 1057, 1125, 1125``
-- Watch the replay with correct timings!;
-- It is very basic, no checks are being done, nothing is being saved, you have to input stuff manually, and you have to re-enter everything again when changing settings or closing replay;
+- Watch the replay with correct timings!
+- It is very basic, no checks are being done, nothing is being saved, you have to input stuff manually, and you have to re-enter everything again when changing settings or closing replay.
