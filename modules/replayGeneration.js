@@ -233,12 +233,9 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         }
         fakeTimes[moveIndex] = fakeTimes[moveIndex - 1] + delays[moveIndex];
     }
-    console.log(customMoveTimes);
-    console.log(fakeTimes);
     if (customMoveTimes !== -1){
         fakeTimes = customMoveTimes;
     }
-    console.log(fakeTimes);
     let index = 0;
     let animationID = null;
     let startAnimationID = null;
