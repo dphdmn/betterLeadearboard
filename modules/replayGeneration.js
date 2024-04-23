@@ -62,14 +62,15 @@ function customReplayCheck() {
         const customSolution = customReplayData[0];
         const customTPS = customReplayData[1];
         const customReplayScramble = customReplayData[2];
+        const fakeTimes = customReplayData[3];
         const customReplayMatrix = scrambleToPuzzle(customReplayScramble);
-        makeReplay(customSolution, -1, customTPS, customReplayMatrix[0].length, customReplayMatrix.length, "Custom", customReplayScramble);
+        makeReplay(customSolution, -1, customTPS, customReplayMatrix[0].length, customReplayMatrix.length, "Custom", customReplayScramble, fakeTimes);
     }
 }
 
 //"Public" function to generate URL based on custom replay data
-function shareReplay(solution, tps, stringScramble) {
-    return window.location.origin + window.location.pathname + "?r=" + compressArrayToString([solution, tps, stringScramble]);
+function shareReplay(solution, tps, stringScramble, fakeTimes) {
+    return window.location.origin + window.location.pathname + "?r=" + compressArrayToString([solution, tps, stringScramble, fakeTimes]);
 }
 
 //"Public" function to close replay (also starts loading leaderboard data for case of URL-replay)
