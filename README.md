@@ -39,4 +39,4 @@ Example:
 - It is very basic, no checks are being done, nothing is being saved, you have to input stuff manually, and you have to re-enter everything again when changing settings or closing replay.
 
 ## Update - April 24, 2024
-v1.3.0 - Replay links now support moveTimes (TBA)
+v1.3.0 - Replay links now support moveTimes [For example, check this!](https://github.com/dphdmn/getLatestSolve/tree/main)
