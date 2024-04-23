@@ -27,7 +27,7 @@ Update: the issue is likely to the github pages IPs being blocked.
 You may have troubles with loading the site from Russia. Sorry.
 
 ## Update - April 22, 2024
-v.1.2.0 - Fixed some issues with replay, added more different issues.
+v1.2.0 - Fixed some issues with replay, added more different issues.
 
 But actually implemented custom movetimes feature.
 
@@ -37,3 +37,6 @@ Example:
 - Enter custom movetimes as ``0, 7, 37, 67, 97, 127, 127, 188, 195, 225, 262, 345, 381, 467, 471, 487, 501, 526, 555, 592, 616, 742, 802, 831, 891, 915, 921, 968, 1005, 1019, 1027, 1057, 1125, 1125``
 - Watch the replay with correct timings!
 - It is very basic, no checks are being done, nothing is being saved, you have to input stuff manually, and you have to re-enter everything again when changing settings or closing replay.
+
+## Update - April 24, 2024
+v1.3.0 - Replay links now support moveTimes (TBA)

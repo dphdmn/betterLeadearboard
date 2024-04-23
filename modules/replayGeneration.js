@@ -529,7 +529,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         const shareReplayButton = document.createElement("button");
         shareReplayButton.textContent = copyReplayButtonText;
         shareReplayButton.addEventListener("click", function () {
-            const shareReplayLink = shareReplay(solution, newTPS, stringScramble);
+            const shareReplayLink = shareReplay(solution, newTPS, stringScramble, fakeTimes);
             navigator.clipboard.writeText(shareReplayLink)
                 .then(() => {
                     const copiedMessage = document.createElement("div");
