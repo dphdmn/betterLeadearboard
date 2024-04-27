@@ -870,7 +870,7 @@ function getTimeAgo(timestamp) {
     }
 
     const hours = Math.floor(minutes / 60);
-    if (hours < 24) {
+    if (hours < 48) {
         return `${hours} hour${hours === 1 ? '' : 's'} ago`;
     }
 
@@ -1389,7 +1389,7 @@ function generateFormattedString(request) {
     formattedParts.push(`<span class="pinktext" style="font-weight: 700;">${selectControlTypeString}</span> ${controlsTypeHeaderString}</h2>`);
     if(latestRecordTime){
         let timeAgo = getTimeAgo(new Date(latestRecordTime));
-        formattedParts.push(`<span class="leaderboardUpdateSpan">${lastLeaderboardUpdateString} ${timeAgo}</span>`);
+        formattedParts.push(`<span class="leaderboardUpdateSpan">${lastLeaderboardUpdateString} <span style="color: #ffffff">${timeAgo}</span></span>`);
         if (timeAgo.includes("days")){
             formattedParts.push(`<span class="leaderboardUpdateSpan"><a style="color: red" href="${leaderboardUpdatesInfoLink}">${leaderboardUpdatesInfoText}</a></span>`);
         }
