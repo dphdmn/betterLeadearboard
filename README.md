@@ -46,6 +46,3 @@ v1.3.0 - Replay links now support moveTimes [For example, check this!](https://g
 
 Or this!  https://github.com/dphdmn/slidysimSessionTracker
 
-## temporarly not (18.05.2024)
-
-I'm upgrading my system, so update might not work as intented, will be fixed in few days if not worknig.
