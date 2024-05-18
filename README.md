@@ -6,6 +6,9 @@ Access it [here](https://dphdmn.github.io/betterLeaderboard/).
 
 [submit your youtube videos to leaderboard](https://docs.google.com/forms/d/e/1FAIpQLSd14jEa6wVTrRkgiuEBKdC8nvdU4JjRfVuOIuPTtkl1zzzKxA/viewform).
 
+## New project - Slidysim Session Tracker
+Hey, do you like slidysim? You have found this page? Check this! https://github.com/dphdmn/slidysimSessionTracker
+
 ## Update - February 29, 2024
 Changed update frequency from hourly to every 6 hours to reduce GitHub spam and annoyance. Considering a potential shift to 24-hour intervals later, but for now, 6 hours seems best.
 
@@ -40,3 +43,5 @@ Example:
 
 ## Update - April 24, 2024
 v1.3.0 - Replay links now support moveTimes [For example, check this!](https://github.com/dphdmn/getLatestSolve/tree/main)
+
+Or this!  https://github.com/dphdmn/slidysimSessionTracker
