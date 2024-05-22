@@ -375,6 +375,8 @@ ec0efdaf892b8a4e794c61ef1ac544e63f3868e9d8d6f6dc9cf749014e95a187 https://youtu.b
 bcbcfd89a81305192e4a23eb15399de800db3cb4f62e4596e9ce35b61ef6515c https://www.youtube.com/watch?v=konHyb8a3tE
 80467a2a062bd5c6e08ccb452f193d556f3e6d74f198eaa8b4f96f6319322fb9 https://youtu.be/btprj4BUqFE
 eca4a0673fb01efe11360510dc62953f9c86e8ae6fbab5efa08925cf53ed1a75 https://youtu.be/T9uAQmnGRe4
+383258dad9316328bba17efb2a64a436371081a229e066929d798e32fcea20ec https://youtu.be/XePxX13zehU
+1e988c03a8ffa93ed7683f1dfc1b7d0b5ee8fab575d4e59757a4892a2cd0e9c1 https://youtu.be/DSDqLjGPRzU?t=373
 `
 ;
 
