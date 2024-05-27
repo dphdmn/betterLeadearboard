@@ -936,15 +936,17 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 7vh;
-    height: 7vh;
+    width: max(3.5vw, 32px);
+    height: max(3.5vw, 32px);
     border: 0.1vh solid #000;
     color: black;
     background-color: #222222;
     border-radius: 0.5vh;
-    font-size: 3.5vh;
+    font-size: max(1.75vw, 16px);
     font-weight: bold;
 }
+
+
 
 .rectangle {
     width: 80%;

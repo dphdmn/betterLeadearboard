@@ -100,6 +100,20 @@ function getMoveTimes() {
 function renderMatrix(matrix, allFringeSchemes, state) {
     width = matrix[0].length;
     height = matrix.length;
+    const minSquareWidthPx = 32;
+    if (width >= 20 ||  height >= 20 || window.innerWidth < 1000){
+        overlay.style.position = "static";
+        overlay.style.top = "0%";
+        overlay.style.left = "0%";
+        overlay.style.transform= "none";
+        overlay.style.padding= "0%";
+    } else {
+        overlay.style.position = "fixed";
+        overlay.style.top = "50%";
+        overlay.style.left = "50%";
+        overlay.style.transform= "translate(-50%, -50%)";
+        overlay.style.padding= "20px";
+    }
     popupContainer.innerHTML = '';
     for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
         const row = matrix[rowIndex];
@@ -109,13 +123,20 @@ function renderMatrix(matrix, allFringeSchemes, state) {
             const number = row[colIndex];
             const square = document.createElement('div');
             square.className = 'square';
-            if (width > 10 || height > 10) {
-                const maxSize = Math.max(width, height);
-                const calculatedSquareSize = 70 / maxSize + "vh";
-                const caclulatedFontSize = 35 / maxSize + "vh";
-                square.style.width = calculatedSquareSize;
-                square.style.height = calculatedSquareSize;
-                square.style.fontSize = caclulatedFontSize;
+            if (width >= 20 ||  height >= 20){
+                square.style.width = `${minSquareWidthPx}px`;
+                square.style.height = `${minSquareWidthPx}px`;
+                square.style.fontSize = `${parseInt(minSquareWidthPx/2)}px`;
+            }
+            else{
+                if (width > 10 || height > 10) {
+                    const maxSize = Math.max(width, height);
+                    const calculatedSquareSize = 35 / maxSize + "vw";
+                    const caclulatedFontSize = 17 / maxSize + "vw";
+                    square.style.width = `max(${calculatedSquareSize}, ${minSquareWidthPx}px)`;
+                    square.style.height = `max(${calculatedSquareSize}, ${minSquareWidthPx}px)`;
+                    square.style.fontSize = `max(${caclulatedFontSize}, ${parseInt(minSquareWidthPx/2)}px)`;
+                }
             }
             if (number !== 0) {
                 square.textContent = number;
