@@ -64,6 +64,9 @@ function sendMyRequest() {
         request.gameMode = "Standard";
     }
     let cleanedData = filterDataByRequest(leaderboardData, request);
+    cleanedData = cleanedData.sort((a, b) => {
+        return a["timestamp"] - b["timestamp"];
+    });
     if (sheetType === squaresSheetType) {
         processSquareRecordsData(cleanedData, sheetType);
     } else if (sheetType === "All") {
