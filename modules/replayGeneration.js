@@ -278,7 +278,6 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     }
     let index = 0;
     let animationID = null;
-    let startAnimationID = null;
     let lastState = null;
     function reverseLastMove() {
         const previousMoveIndex = index - 1;
@@ -745,19 +744,16 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     popupContainerSettings.style.display = "none";
     settingsButton.textContent = showStatsText;
     function toggleAnimationButton() {
-        if (index === solLen) {
-            makeStopButton();
-            rewindContainer.style.display = false;
+        if (index === solLen && animationID === null) {
+            makeStartButton();
             for (let moveAmount = index; moveAmount > 0; moveAmount--) {
                 reverseLastMove();
             }
             rewindSlider.value = 0;
             updateRewindSliderMoves();
             index = 0;
-            rewindContainer.style.display = true;
-            runAnimation();
         } else {
-            if (animationID) {
+            if (animationID !== null) {
                 stopAnimation();
                 makeStartButton();
             } else {
@@ -798,14 +794,6 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
          
         animationID = setInterval(updateAnimation, intervalTimeMS);
     }
-    function runAnimation() {
-        startAnimationID = setTimeout(function () {
-            rewindSlider.focus();
-            startTime = new Date()
-                .getTime();
-            animationID = setInterval(updateAnimation, intervalTimeMS);
-        }, startingDelayMS);
-    }
     function manualMoving() {
         stopAnimation();
         nextMoveCounter.innerHTML = "";
@@ -837,10 +825,6 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         if (animationID !== null) {
             clearInterval(animationID);
             animationID = null;
-        }
-        if (startAnimationID !== null) {
-            clearTimeout(startAnimationID);
-            startAnimationID = null;
         }
     }
     stopAnimationF = stopAnimation;
