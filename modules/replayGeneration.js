@@ -788,11 +788,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     if (solution !== "") {
         updateRewindSliderMoves();
     }
-    if (!isCustomReplay) {
-        runAnimation();
-    } else {
-        makeStartButton();
-    }
+    makeStartButton();
     function stopAnimation() {
         if (animationID !== null) {
             clearInterval(animationID);
