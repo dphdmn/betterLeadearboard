@@ -419,7 +419,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         if (!isCustomReplay) {
             makeReplay(solution, -1, tps, matrix[0].length, matrix.length, scoreTitle);
         } else {
-            makeReplay(solution, -1, tps, matrix[0].length, matrix.length, "Custom", stringScramble);
+            makeReplay(solution, -1, tps, matrix[0].length, matrix.length, "Custom", stringScramble, customMoveTimes);
         }
     });
     const autoDetectGridsCheckboxLabel = document.createElement("label");
