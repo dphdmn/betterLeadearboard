@@ -197,7 +197,7 @@ function createSheet(sortedLists, sheetType) {
                     makeyoutubelink = false;
                     if (videolink){
                         scoreCellElement.classList.add("clickable");
-                        scoreCellElement.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${scoreCellElement.firstChild.textContent}`;
+                        scoreCellElement.firstChild.innerHTML = youtubeElement + scoreCellElement.firstChild.textContent;
                         makeyoutubelink = true;
                     }
                     if (request.gameMode === "Standard" && !isAverage) {
@@ -205,7 +205,7 @@ function createSheet(sortedLists, sheetType) {
                         if (solution !== -1) {
                             makeyoutubelink = false;
                             scoreCellElement.classList.add("clickable");
-                            scoreCellElement.firstChild.textContent = replayAvailableIcon + scoreCellElement.firstChild.textContent;
+                            scoreCellElement.firstChild.innerHTML = eggElement + scoreCellElement.firstChild.textContent;
                             let videoLinkForReplay = -1;
                             if (videolink){
                                 videoLinkForReplay = videolink
@@ -400,7 +400,7 @@ function createSheetNxM(WRList) {
                         let makeyoutubelink = false;
                         if (videolink){
                             cell.classList.add("clickable");
-                            cell.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${cell.firstChild.textContent}`;
+                            cell.firstChild.innerHTML = youtubeElement + cell.firstChild.textContent;
                             makeyoutubelink = true;
                         }
                         if (request.gameMode === "Standard") {
@@ -412,7 +412,7 @@ function createSheetNxM(WRList) {
                                     videoLinkForReplay = videolink;
                                 }
                                 cell.classList.add("clickable");
-                                cell.firstChild.textContent = replayAvailableIcon + cell.firstChild.textContent;
+                                cell.firstChild.innerHTML = eggElement + cell.firstChild.textContent;
                                 const scoreTitle = getScoreTitle(videoLinkForReplay, result.width, result.height, result.displayType, result.nameFilter, result.controls, result.timestamp, tierName, isWR, scoreType);
                                 cell.addEventListener('click', function (event) {
                                     makeReplay(solution, event, result.tps, result.width, result.height, scoreTitle);
@@ -626,7 +626,7 @@ function createSheetRankings(playerScores) {
                                     let makeyoutubelink = false;
                                     if (videolink){
                                         scoreCell.classList.add("clickable");
-                                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
+                                        scoreCell.firstChild.innerHTML = youtubeElement + scoreCell.firstChild.textContent;
                                         makeyoutubelink = true;
                                     }
                                     if (item.gameMode === "Standard" && !isAverage) {
@@ -638,7 +638,7 @@ function createSheetRankings(playerScores) {
                                                 videoLinkForReplay = videolink
                                             }
                                             scoreCell.classList.add("clickable");
-                                            scoreCell.textContent = replayAvailableIcon + scoreCell.textContent;
+                                            scoreCell.innerHTML = eggElement + scoreCell.textContent;
                                             const scoreTitle = getScoreTitle(videoLinkForReplay, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, scoreData.scoreTier, scoreData.scorePercentage === 100, scoreType);
                                             scoreCell.addEventListener('click', (event) => {
                                                 makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
@@ -1054,7 +1054,7 @@ function getScoreTitle(videolink, width, height, displayType, username, controls
         tierTitleSpan.addEventListener('click', function () {
             window.open(videolink, '_blank');
         });
-        tierTitleSpan.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${tierTitleSpan.innerHTML}`;
+        tierTitleSpan.innerHTML = youtubeElement + tierTitleSpan.innerHTML;
     }
     return tierTitleSpan;
 }
@@ -1738,7 +1738,7 @@ function populateTableHistory(records, recordsListWR, scoreType, table, reverse)
                     let makeyoutubelink = false;
                     if (videolink){
                         scoreCell.classList.add("clickable");
-                        scoreCell.firstChild.innerHTML = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube Logo">${scoreCell.firstChild.textContent}`;
+                        scoreCell.firstChild.innerHTML = youtubeElement + scoreCell.firstChild.textContent;
                         makeyoutubelink = true;
                     }           
                 if (item.gameMode === "Standard" && !isAverage) {
@@ -1750,7 +1750,7 @@ function populateTableHistory(records, recordsListWR, scoreType, table, reverse)
                             videoLinkForReplay = videolink
                         }
                         scoreCell.classList.add("clickable");
-                        scoreCell.firstChild.textContent = replayAvailableIcon + scoreCell.firstChild.textContent;
+                        scoreCell.firstChild.innerHTML = eggElement + scoreCell.firstChild.textContent;
                         const scoreTitle = getScoreTitle(videoLinkForReplay, item.width, item.height, item.displayType, item.nameFilter, item.controls, item.timestamp, tier, percentage === 100, scoreType);
                         scoreCell.addEventListener('click', (event) => {
                             makeReplay(solution, event, item.tps, item.width, item.height, scoreTitle);
