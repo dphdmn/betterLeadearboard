@@ -53,3 +53,4 @@ var controlTypeSelect;
 var NxMSelected;
 let eventListenerReference = null;
 var newMaxCategories;
+let warningWasShown = false;

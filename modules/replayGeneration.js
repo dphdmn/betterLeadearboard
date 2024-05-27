@@ -11,8 +11,13 @@ slidingPuzzle.js
 
 //"Public" function to make replay of the puzzle (event - click event on a button if there was one)
 function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTitle = "Custom", customScramble = -1, customMoveTimes = -1) {
+    let showWarning = false;
+    let isCustom = scoreTitle == "Custom";
     if (event !== -1) {
         event.stopPropagation();
+        if (!warningWasShown){
+            showWarning = true;
+        }
     }
     overlay.style.display = 'flex';
     let scrambleMatrix;
@@ -44,7 +49,7 @@ function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTit
     }
     const gridsStates = generateGridsStats(gridsData);
     const allFringeSchemes = getAllFringeSchemes(gridsStates);
-    renderMatrix(scrambleMatrix, allFringeSchemes, gridsStates[0]);
+    renderMatrix(scrambleMatrix, allFringeSchemes, gridsStates[0], isCustom, showWarning);
     if (!constantTPSCheckbox_last) {
         animateMatrix(scoreTitle = scoreTitle, scrambleMatrix, solution, tps, allFringeSchemes, gridsStates, fasterLong = 0, firstMoveDelay = 500, customMoveTimes = customMoveTimes);
     } else {
@@ -97,22 +102,14 @@ function getMoveTimes() {
     return numbers;
 }
 
-function renderMatrix(matrix, allFringeSchemes, state) {
+function renderMatrix(matrix, allFringeSchemes, state, isCustom=false, showWarning=false) {
     width = matrix[0].length;
     height = matrix.length;
     const minSquareWidthPx = 32;
-    if (width >= 20 ||  height >= 20 || window.innerWidth < 1000){
-        overlay.style.position = "static";
-        overlay.style.top = "0%";
-        overlay.style.left = "0%";
-        overlay.style.transform= "none";
-        overlay.style.padding= "0%";
+    if (width >= 20 ||  height >= 20 || (window.innerWidth < 1000 && (height > 10 || width > 10 || isCustom))){
+        changeOveralyStyle(mobile=true, showWarning=showWarning);
     } else {
-        overlay.style.position = "fixed";
-        overlay.style.top = "50%";
-        overlay.style.left = "50%";
-        overlay.style.transform= "translate(-50%, -50%)";
-        overlay.style.padding= "20px";
+        changeOveralyStyle(mobile=false)
     }
     popupContainer.innerHTML = '';
     for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
@@ -191,6 +188,26 @@ function renderMatrix(matrix, allFringeSchemes, state) {
         }
         popupContainer.appendChild(rowElement);
     }
+}
+
+function changeOveralyStyle(mobile=true, showWarning=false){
+    if (mobile){
+        if(showWarning){
+            alert(replayTooBigWarning);
+            warningWasShown = true;
+        }
+        overlay.style.position = "static";
+        overlay.style.top = "0%";
+        overlay.style.left = "0%";
+        overlay.style.transform= "none";
+        overlay.style.padding= "0%";
+        return;
+    }
+    overlay.style.position = "fixed";
+    overlay.style.top = "50%";
+    overlay.style.left = "50%";
+    overlay.style.transform= "translate(-50%, -50%)";
+    overlay.style.padding= "20px";
 }
 
 function applyColorAny(colorsMatrix, square, number, width, height, offsetW, offsetH, mainWidth, secondary = false) {
@@ -714,6 +731,9 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         if (popupContainerSettings.style.display === "none") {
             popupContainerSettings.style.display = "block";
             settingsButton.textContent = hideStatsText;
+            if (window.innerWidth < 1000){
+                changeOveralyStyle(mobile=true, showWarning=!warningWasShown);
+            }
         } else {
             popupContainerSettings.style.display = "none";
             settingsButton.textContent = showStatsText;
@@ -721,6 +741,8 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     }
     settingsButton.addEventListener('click', toggleSettingsVisibility)
     makeStopButton();
+    popupContainerSettings.style.display = "none";
+    settingsButton.textContent = showStatsText;
     function toggleAnimationButton() {
         if (index === solLen) {
             makeStopButton();
