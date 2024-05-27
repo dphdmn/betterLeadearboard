@@ -102,4 +102,9 @@ const leaderboardUpdatesInfoText = "Thinking it's not updating? It's been more t
 const moveTimesButtonText = "Play with custom movetimes";
 const moveTimesAsk = "Enter moveTimes (in MS) separated by commas. WARNING: This is experimental. No checks are being done, make sure your values are correct values from your slidysim db. Make sure that all moves are included. Make sure that format is correct (same as in db). If you change any settings or close the replay, you should load those again.";
 const moveTimesButtonTextChanged = "Load different movetimes<br>(some already loaded)";
-const replayTooBigWarning = "The replay is too large to fit on your screen.\nScroll to the top of the page to view it!\n\n(This message will not appear again unless you refresh the page.)";
+const replayTooBigWarning = "The replay is too large to fit your screen.\nIt will be instead embedded at the top of the page.\n\nYou will be automatically scrolled to it when that happens.\n\n(This message won't appear again unless you refresh the page.)";
+
+
+
+
+

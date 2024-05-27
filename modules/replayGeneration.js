@@ -201,6 +201,7 @@ function changeOveralyStyle(mobile=true, showWarning=false){
         overlay.style.left = "0%";
         overlay.style.transform= "none";
         overlay.style.padding= "0%";
+        overlay.scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
         return;
     }
     overlay.style.position = "fixed";
