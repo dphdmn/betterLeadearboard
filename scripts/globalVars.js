@@ -21,6 +21,8 @@ const youtubeLogoLink="images/youtube.ico";
 const youtubeElement = `<img class="emoji" src="${youtubeLogoLink}" alt="YouTube video available"></img>`
 const eggIcon = "images/eggIcon.ico";
 const eggElement = `<img class="emoji" src="${eggIcon}" alt="Repaly available"></img>`
+const redEggIcon = "images/redEgg.ico";
+const redEggElement = `<img class="emoji" src="${redEggIcon}" alt="Replay and Video available"></img>`
 //default request
 var request = {
     displayType: "Standard",
