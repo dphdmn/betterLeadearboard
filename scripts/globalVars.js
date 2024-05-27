@@ -54,3 +54,5 @@ var NxMSelected;
 let eventListenerReference = null;
 var newMaxCategories;
 let warningWasShown = false;
+let ytOnlyEnabled = false;
+let hiddenSolveData;

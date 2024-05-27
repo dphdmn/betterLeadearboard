@@ -37,3 +37,4 @@ const loadingPlaceHolder = document.getElementById('loadingPlaceHolder');
 const createCustomReplayButton = document.getElementById("createCustomReplayButton");
 const suggestionsContainer = document.getElementById("suggestionsContainer");
 const enableDebugMode = document.getElementById("enableDebugMode");
+const ytOnlyButton = document.getElementById("ytOnlyButton");

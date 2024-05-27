@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/egg.png" type="image/png">
-  <title>Better Slidysim Leaderboard v1.3.8</title>
+  <title>Better Slidysim Leaderboard v1.3.9</title>
 </head>
 
 <body>
@@ -47,10 +47,51 @@
           <label for="radio-10x10">10x10</label>
         </div>
         <div class="form_radio_btn">
-          <input id="radio-custom-size" type="radio" name="puzzleSize" value="11x11" />
-          <label for="radio-custom-size">Custom</label>
-          <input class="inputText" style="max-width: 35px;" type="text" id="customInputSize" placeholder="Size" value="11x11" />
+          <input id="radio-11x11" type="radio" name="puzzleSize" value="11x11" />
+          <label for="radio-11x11">11x11</label>
         </div>
+        <div class="form_radio_btn">
+          <input id="radio-12x12" type="radio" name="puzzleSize" value="12x12" />
+          <label for="radio-12x12">12x12</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-13x13" type="radio" name="puzzleSize" value="13x13" />
+          <label for="radio-13x13">13x13</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-14x14" type="radio" name="puzzleSize" value="14x14" />
+          <label for="radio-14x14">14x14</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-15x15" type="radio" name="puzzleSize" value="15x15" />
+          <label for="radio-15x15">15x15</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-16x16" type="radio" name="puzzleSize" value="16x16" />
+          <label for="radio-16x16">16x16</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-17x17" type="radio" name="puzzleSize" value="17x17" />
+          <label for="radio-17x17">17x17</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-18x18" type="radio" name="puzzleSize" value="18x18" />
+          <label for="radio-18x18">18x18</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-19x19" type="radio" name="puzzleSize" value="19x19" />
+          <label for="radio-19x19">19x19</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-20x20" type="radio" name="puzzleSize" value="20x20" />
+          <label for="radio-20x20">20x20</label>
+        </div>
+        <div class="form_radio_btn">
+          <input id="radio-custom-size" type="radio" name="puzzleSize" value="30x30" />
+          <label for="radio-custom-size">Custom</label>
+          <input class="inputText" style="max-width: 60px;" type="text" id="customInputSize" placeholder="Size" value="30x30" />
+        </div>
+        <br>
         <div class="form_radio_btn">
           <input id="rankingsRadio" type="radio" name="puzzleSize" value="Rankings" />
           <label id="label_rankingsRadio" for="rankingsRadio">Main Ranks</label>
@@ -82,7 +123,7 @@
         </div>
         <button id="createCustomReplayButton">Replay</button>
         <button id="enableDebugMode">Debug</button>
-        <button onclick="solveData.length=0; sendMyRequest();this.disabled=true; this.textContent='[Refresh!]'; this.style.backgroundColor='gray';">YT only</button>
+        <button id="ytOnlyButton">Hide replays</button>
       </div>
       <div id="solveTypeDiv">
         <div class="tabs">

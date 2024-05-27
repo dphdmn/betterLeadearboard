@@ -109,6 +109,21 @@ function addListenersToElements() {
         debugMode = !debugMode;
         sendMyRequest();
     });
+    ytOnlyButton.addEventListener("click", function(){
+        ytOnlyEnabled = !ytOnlyEnabled;
+        if (ytOnlyEnabled){
+            ytOnlyButton.textContent = "Load replays";
+            hiddenSolveData = solveData;
+            solveData = [];
+            sendMyRequest();
+        }
+        else {
+            ytOnlyButton.textContent = "Hide replays";
+            solveData = hiddenSolveData;
+            sendMyRequest();
+        }
+
+    });
     document.addEventListener("keydown", function (event) {
         if (event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
             if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
