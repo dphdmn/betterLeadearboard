@@ -56,3 +56,4 @@ var newMaxCategories;
 let warningWasShown = false;
 let ytOnlyEnabled = false;
 let hiddenSolveData;
+let currentWindowWidth;

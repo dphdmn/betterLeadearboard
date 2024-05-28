@@ -12,6 +12,7 @@ slidingPuzzle.js
 //"Public" function to make replay of the puzzle (event - click event on a button if there was one)
 function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTitle = "Custom", customScramble = -1, customMoveTimes = -1) {
     let showWarning = false;
+    currentWindowWidth = window.innerWidth;
     let isCustom = scoreTitle == "Custom";
     if (event !== -1) {
         event.stopPropagation();
@@ -106,7 +107,7 @@ function renderMatrix(matrix, allFringeSchemes, state, isCustom=false, showWarni
     width = matrix[0].length;
     height = matrix.length;
     const minSquareWidthPx = 32;
-    if (width >= 20 ||  height >= 20 || (window.innerWidth < 1000 && (height > 10 || width > 10 || isCustom))){
+    if (width >= 20 ||  height >= 20 || (currentWindowWidth < 1000 && (height > 10 || width > 10 || isCustom))){
         changeOveralyStyle(mobile=true, showWarning=showWarning);
     } else {
         changeOveralyStyle(mobile=false)
@@ -285,7 +286,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         matrix = updateMatrix(matrix, moveRevrsed);
         state = getGridsState(gridsStates, previousMoveIndex);
         if (lastState !== state) {
-            renderMatrix(matrix, allFringeSchemes, state);
+            renderMatrix(matrix, allFringeSchemes, state, isCustomReplay || !(popupContainerSettings.style.display === "none"), !warningWasShown);
             lastState = state;
         }
         index--;
@@ -296,7 +297,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         matrix = updateMatrix(matrix, move);
         const state = gridsStates[nextIndex - 1];
         if (state) {
-            renderMatrix(matrix, allFringeSchemes, state);
+            renderMatrix(matrix, allFringeSchemes, state, isCustomReplay || !(popupContainerSettings.style.display === "none"), !warningWasShown);
         }
         index = nextIndex;
         return move;
@@ -316,7 +317,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
             makeMove();
             updateRewindSliderMoves();
             if (index === solLen) {
-                renderMatrix(matrix, allFringeSchemes, gridsStates[0]);
+                renderMatrix(matrix, allFringeSchemes, gridsStates[0], isCustomReplay || !(popupContainerSettings.style.display === "none"), !warningWasShown);
                 popupContainer.insertBefore(scoreHeader, popupContainer.firstChild);
                 stopAnimation();
                 makeReplayButton();
@@ -800,7 +801,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         const sliderValue = parseInt(rewindSlider.value);
         if (sliderValue === solLen) {
             lastState = gridsStates[0];
-            renderMatrix(matrix, allFringeSchemes, lastState);
+            renderMatrix(matrix, allFringeSchemes, lastState, isCustomReplay || !(popupContainerSettings.style.display === "none"), !warningWasShown);
             makeReplayButton();
         } else {
             makeStartButton();
@@ -828,6 +829,9 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         }
     }
     stopAnimationF = stopAnimation;
+    if (!(popupContainerSettings.style.display === "none")){
+        changeOveralyStyle(mobile=true, showWarning=!warningWasShown);
+    }
 }
 
 function updateMatrix(matrix, movetype) {
