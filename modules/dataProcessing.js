@@ -323,6 +323,7 @@ function filterByKeyboard(originalList) {
     return originalList.filter(item => item.controls === "Keyboard");
 }
 
+//Only for single category scores list, do not try at mixed categories lists!
 function filterByUnique(originalList) {
     const nameFilterSet = new Set();
     return originalList.filter(item => {
@@ -590,17 +591,32 @@ function getPopularList(scores, controlType, categoriesAmount = 1, onlySquares =
             categoryCountMap.set(category, 1);
         }
     }
+    let reservedCategories = [];
+    function reserveCategory(name, category) {
+        const exists = reservedCategories.some(pair => pair.name === name && pair.category === category);
+        if (exists) {
+            return true;
+        } else {
+            reservedCategories.push({ name, category });
+            return false;
+        }
+    }
     scores.forEach((item) => {
         const category = defineCategoryString(item);
         if ((item.time > 300 || item.time === -1) && (item.moves >= 2000 || item.moves === -1) && (item.width + item.height > 4)) {
 
             if (categoryCountMap.has(category)) {
                 if (categoryCountMap.get(category) !== 0) {
-                    categoryCountMap.set(category, categoryCountMap.get(category) + 1);
+                    isReserved = reserveCategory(item.nameFilter, category);
+                    if (!isReserved){
+                        categoryCountMap.set(category, categoryCountMap.get(category) + 1);
+                    }
                 } else {
+                    reserveCategory(item.nameFilter, category);
                     initializeCategory(item, category);
                 }
             } else {
+                reserveCategory(item.nameFilter, category);
                 initializeCategory(item, category);
             }
         } else {
