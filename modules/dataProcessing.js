@@ -633,24 +633,15 @@ function getPopularList(scores, controlType, categoriesAmount = 1, onlySquares =
         categoriesCounters[id] = count;
     });
     function getAllowedAmounts(categoriesCounters) {
-        const categoriesMap = new Map();
-        let maxCategories = categoriesCounters.length;
-    
+        const out = new Map();
+        let val;
         for (let i = categoriesCounters.length - 1; i >= 0; i--) {
-            if (!categoriesMap.has(categoriesCounters[i])) {
-                categoriesMap.set(categoriesCounters[i], maxCategories);
+            if (val !== categoriesCounters[i]) {
+                val = categoriesCounters[i];
+                out.set(i + 1, val);
             }
-            maxCategories--;
         }
-    
-        // Create a new map with keys and values swapped
-        const swappedMap = new Map();
-        categoriesMap.forEach((value, key) => {
-            swappedMap.set(value, key);
-        });
-        //console.log(categoriesCounters);
-        //console.log(swappedMap);
-        return swappedMap;
+        return out;
     }
     
     allowedCategoryCounts = getAllowedAmounts(categoriesCounters);
