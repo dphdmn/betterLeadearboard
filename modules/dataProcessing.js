@@ -627,6 +627,33 @@ function getPopularList(scores, controlType, categoriesAmount = 1, onlySquares =
         .filter(([_, count]) => count > 0)
         .map(([category, _]) => category);
     validCategories.sort((a, b) => categoryCountMap.get(b) - categoryCountMap.get(a));
+    let categoriesCounters = []
+    validCategories.forEach((item, id) => {
+        let count = categoryCountMap.get(item);
+        categoriesCounters[id] = count;
+    });
+    function getAllowedAmounts(categoriesCounters) {
+        const categoriesMap = new Map();
+        let maxCategories = categoriesCounters.length;
+    
+        for (let i = categoriesCounters.length - 1; i >= 0; i--) {
+            if (!categoriesMap.has(categoriesCounters[i])) {
+                categoriesMap.set(categoriesCounters[i], maxCategories);
+            }
+            maxCategories--;
+        }
+    
+        // Create a new map with keys and values swapped
+        const swappedMap = new Map();
+        categoriesMap.forEach((value, key) => {
+            swappedMap.set(value, key);
+        });
+        //console.log(categoriesCounters);
+        //console.log(swappedMap);
+        return swappedMap;
+    }
+    
+    allowedCategoryCounts = getAllowedAmounts(categoriesCounters);
     newMaxCategories = validCategories.length;
     validCategories = validCategories.slice(0, categoriesAmount);
     const sortedCategories = validCategories.map(category => {
@@ -639,13 +666,6 @@ function getPopularList(scores, controlType, categoriesAmount = 1, onlySquares =
         };
     });
     sortedCategories.sort((a, b) => a.sortingValue - b.sortingValue);
-    minAmountOfPlayers = "None"
-    sortedCategories.forEach((item) => {
-        let currentAmountOfPlayers = categoryCountMap.get(item.category);
-        if (minAmountOfPlayers === "None" || currentAmountOfPlayers < minAmountOfPlayers){
-            minAmountOfPlayers = currentAmountOfPlayers;
-        }
-    });
     const sortedCategoryItems = sortedCategories.map(categoryObj => categoryObj.category);
     return generateRanksFromCategories(sortedCategoryItems);
 }

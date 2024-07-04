@@ -1519,26 +1519,47 @@ function getScoreStringNxM(time, moves, tps, scoreType, isAverage, username) {
 
 //_________________"Private" functions for createSheetRankings_________________
 
+
+function getClosestAllowedValue(value, allowedValues) {
+    return allowedValues.reduce((prev, curr) => 
+        Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
+    );
+}
+
 function createCustomSlider() {
-    const numberOfCategories = newMaxCategories;
     const slider = document.createElement("input");
     slider.type = "range";
-    slider.min = 1;
-    slider.max = numberOfCategories;
-    slider.value = Math.min(lastSliderValue, numberOfCategories);
+    allowedCategoryCountsCategories = Array.from(allowedCategoryCounts.keys());
+    slider.min = Math.min(...allowedCategoryCountsCategories);
+    slider.max = Math.max(...allowedCategoryCountsCategories);
+
+    // Find the closest allowed value for the initial slider value
+    const closestAllowedValue = getClosestAllowedValue(lastSliderValue, allowedCategoryCountsCategories);
+    slider.value = closestAllowedValue;
+
+    const getMinPlayers = (value) => allowedCategoryCounts.get(parseInt(value));
+
     const sliderLabel = document.createElement("label");
-    sliderLabel.innerHTML = `<span style="color: white;">${maxCategoriesForPopularString}</span> <span style="color: #00ff00;">${slider.value}</span><br><span style="color: #90EE90;font-style: italic;">[Min. amount of players: ${minAmountOfPlayers}]</span>`;
+    sliderLabel.innerHTML = `<span style="color: white;">Min. amount of players: </span><span style="color: #00ff00;">${getMinPlayers(slider.value)}</span><br><span style="color: #90EE90;font-style: italic;">${maxCategoriesForPopularString} ${slider.value}</span>`;
     const contentDiv = document.getElementById("contentDiv");
     contentDiv.insertBefore(sliderLabel, contentDiv.firstChild);
     contentDiv.insertBefore(slider, contentDiv.firstChild);
+
     slider.addEventListener("input", function () {
-        sliderLabel.textContent = `${maxCategoriesForPopularString} ${slider.value}`;
+        const closestAllowedValue = getClosestAllowedValue(slider.value, allowedCategoryCountsCategories);
+        slider.value = closestAllowedValue;
+        sliderLabel.innerHTML = `<span style="color: white;">Min. amount of players: </span><span style="color: #00ff00;">${getMinPlayers(slider.value)}</span><br><span style="color: #90EE90;font-style: italic;">${maxCategoriesForPopularString} ${slider.value}</span>`;
     });
+
     slider.addEventListener("change", function () {
-        lastSliderValue = slider.value;
+        const closestAllowedValue = getClosestAllowedValue(slider.value, allowedCategoryCountsCategories);
+        slider.value = closestAllowedValue;
+        lastSliderValue = closestAllowedValue;
         sendMyRequest();
     });
+
     sliderLabel.classList.add("sliderlabel");
+
     const onlySquaresCheckbox = document.createElement("input");
     onlySquaresCheckbox.type = "checkbox";
     onlySquaresCheckbox.id = "onlySquaresCheckbox";
@@ -1547,9 +1568,11 @@ function createCustomSlider() {
         lastSquaresCB = onlySquaresCheckbox.checked;
         sendMyRequest();
     });
+
     const onlySquaresLabel = document.createElement("label");
     onlySquaresLabel.textContent = onlyInterestingCategoriesPopular;
     onlySquaresLabel.htmlFor = "onlySquaresCheckbox";
+
     contentDiv.appendChild(onlySquaresCheckbox);
     contentDiv.appendChild(onlySquaresLabel);
     contentDiv.appendChild(document.createElement("br"));

@@ -54,5 +54,6 @@ Or this!  https://github.com/dphdmn/slidysimSessionTracker
 - **Fair Record Sorting**: Addressed a bug (https://github.com/dphdmn/betterLeaderboard/issues/1) related to resolving tied move count world records, ensuring fairness by sorting them based on timestamp ([1.3.10](https://github.com/dphdmn/betterLeaderboard/commit/c56911fdb6940536f656438129614ba0085dbb1a)).
 - **Fixed Custom Move Time Preservation**: Rectified a bug associated with the "Force Fringe" button when loading custom move times, ensuring the preservation of custom move times as intended ([1.3.11](https://github.com/dphdmn/betterLeaderboard/commit/07c24a937113e0a8ede7d4d7319508691b8d1779)).
 
-### Update - July 4, 2024 - v1.4.3
-Added "Min. amount of players" extra stat https://github.com/dphdmn/betterLeaderboard/commit/175cb0f8ebd5a626b862434f32e274ce0f39fff9
+## Update - July 4, 2024 - v1.5.0
+
+v1.5.0 - The threshold for "Most Popular" Rankings is now based on the number of players rather than categories.
