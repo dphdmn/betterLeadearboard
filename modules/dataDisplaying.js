@@ -1527,7 +1527,7 @@ function createCustomSlider() {
     slider.max = numberOfCategories;
     slider.value = Math.min(lastSliderValue, numberOfCategories);
     const sliderLabel = document.createElement("label");
-    sliderLabel.textContent = `${maxCategoriesForPopularString} ${slider.value}`;
+    sliderLabel.innerHTML = `<span style="color: white;">${maxCategoriesForPopularString}</span> <span style="color: #00ff00;">${slider.value}</span><br><span style="color: #90EE90;font-style: italic;">[Min. amount of players: ${minAmountOfPlayers}]</span>`;
     const contentDiv = document.getElementById("contentDiv");
     contentDiv.insertBefore(sliderLabel, contentDiv.firstChild);
     contentDiv.insertBefore(slider, contentDiv.firstChild);

@@ -623,6 +623,13 @@ function getPopularList(scores, controlType, categoriesAmount = 1, onlySquares =
         };
     });
     sortedCategories.sort((a, b) => a.sortingValue - b.sortingValue);
+    minAmountOfPlayers = "None"
+    sortedCategories.forEach((item) => {
+        let currentAmountOfPlayers = categoryCountMap.get(item.category);
+        if (minAmountOfPlayers === "None" || currentAmountOfPlayers < minAmountOfPlayers){
+            minAmountOfPlayers = currentAmountOfPlayers;
+        }
+    });
     const sortedCategoryItems = sortedCategories.map(categoryObj => categoryObj.category);
     return generateRanksFromCategories(sortedCategoryItems);
 }
