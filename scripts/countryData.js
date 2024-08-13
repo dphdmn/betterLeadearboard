@@ -128,6 +128,7 @@ const userCountryMap = {
     '0jacky0': 'China',
     Sakinuto: 'Brazil',
     Yiclaw: 'Norway',
+    PedroAM: 'Brazil',
 };
 
 const countryEmojis = {
