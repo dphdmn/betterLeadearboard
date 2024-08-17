@@ -121,7 +121,7 @@ const userCountryMap = {
     HOGGYSIMP: 'United States of America',
     amazingpikachu37: 'United States of America',
     //14.01.2024
-    XejuX: 'France',
+    kolunoa: 'France',
     //05.04.2024
     HoHo: 'Japan',
     chaeerin: 'Columbia',
