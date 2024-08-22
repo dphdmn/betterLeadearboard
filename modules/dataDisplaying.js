@@ -621,6 +621,8 @@ function createSheetRankings(playerScores) {
                             if (scoreData.scorePercentage === 100) {
                                 scoreCell.classList.add("WRPB");
                                 extraInfo += " [WR]<br>";
+                            } else {
+                                extraInfo += " " + scoreData.scorePercentage + "%<br>"
                             }
                             if (scoreString[0].includes("NaN")) {
                                 scoreCell.classList.add("no-box-shadow");
