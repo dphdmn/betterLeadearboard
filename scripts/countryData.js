@@ -7,7 +7,7 @@ const userCountryMap = {
     Utochka: 'Belarus',
     larsvdb97: 'Belgium',
     luybo: 'Bulgaria',
-    pfcballer: 'Canada',
+    ap: 'Canada',
     vcuber13: 'Canada',
     yoshinator879: 'Canada',
     Blueoanaoa: 'China',
