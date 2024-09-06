@@ -120,15 +120,14 @@ const userCountryMap = {
     kleb: 'United States of America',
     HOGGYSIMP: 'United States of America',
     amazingpikachu37: 'United States of America',
-    //14.01.2024
     kolunoa: 'France',
-    //05.04.2024
     HoHo: 'Japan',
     chaeerin: 'Columbia',
     '0jacky0': 'China',
     Sakinuto: 'Brazil',
     Yiclaw: 'Norway',
     PedroAM: 'Brazil',
+    zach: 'United States of America',
 };
 
 const countryEmojis = {
