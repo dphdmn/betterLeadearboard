@@ -133,6 +133,7 @@ const userCountryMap = {
     boink: 'Australia',
     July2nd: 'United States of America',
     Corpllwacquirerrichmf: 'Germany',
+    erykkas: 'Poland',
 };
 
 const countryEmojis = {
