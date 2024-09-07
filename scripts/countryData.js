@@ -130,7 +130,9 @@ const userCountryMap = {
     zach: 'United States of America',
     luca: 'United Kingdom',
     OCEshadow: 'Australia',
-    boink: 'Australia'
+    boink: 'Australia',
+    July2nd: 'United States of America',
+    Corpllwacquirerrichmf: 'Germany',
 };
 
 const countryEmojis = {
