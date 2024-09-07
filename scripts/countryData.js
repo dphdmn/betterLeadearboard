@@ -128,6 +128,9 @@ const userCountryMap = {
     Yiclaw: 'Norway',
     PedroAM: 'Brazil',
     zach: 'United States of America',
+    luca: 'United Kingdom',
+    OCEshadow: 'Australia',
+    boink: 'Australia'
 };
 
 const countryEmojis = {
