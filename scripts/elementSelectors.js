@@ -38,3 +38,4 @@ const createCustomReplayButton = document.getElementById("createCustomReplayButt
 const suggestionsContainer = document.getElementById("suggestionsContainer");
 const enableDebugMode = document.getElementById("enableDebugMode");
 const ytOnlyButton = document.getElementById("ytOnlyButton");
+const createCustomReplayButtonLink = document.getElementById("createCustomReplayButtonLink");

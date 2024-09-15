@@ -105,6 +105,16 @@ function addListenersToElements() {
     createCustomReplayButton.addEventListener("click", function () {
         makeReplay("", -1, 15000, 4, 4, "Custom");
     });
+    createCustomReplayButtonLink.addEventListener("click", function () {
+        var userInput = prompt("Enter replay file link, such as https://dphdmn.github.io/betterLeaderboard/?r=...\nThis tool is for loading very long replays, if you are getting `Error: URI Too Long`");
+        const customReplayData = decompressStringToArray(new URL(userInput).searchParams.get('r'));
+        const customSolution = customReplayData[0];
+        const customTPS = customReplayData[1];
+        const customReplayScramble = customReplayData[2];
+        const fakeTimes = customReplayData[3];
+        const customReplayMatrix = scrambleToPuzzle(customReplayScramble);
+        makeReplay(customSolution, -1, customTPS, customReplayMatrix[0].length, customReplayMatrix.length, "Custom", customReplayScramble, fakeTimes);
+    });
     enableDebugMode.addEventListener("click", function(){
         debugMode = !debugMode;
         sendMyRequest();
