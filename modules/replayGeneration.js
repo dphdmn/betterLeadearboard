@@ -194,7 +194,7 @@ function renderMatrix(matrix, allFringeSchemes, state, isCustom=false, showWarni
 function changeOveralyStyle(mobile=true, showWarning=false){
     if (mobile){
         if(showWarning){
-            alert(replayTooBigWarning);
+            //alert(replayTooBigWarning);
             warningWasShown = true;
         }
         overlay.style.position = "static";
