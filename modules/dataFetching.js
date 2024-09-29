@@ -215,13 +215,21 @@ function getHighestTimestampValue(arr) {
     if (arr.length === 0) {
         return undefined;
     }
+    
     let highestTimestamp = arr[0].timestamp;
+    const currentTime = Date.now();
+
     for (let i = 1; i < arr.length; i++) {
-        const currentTimestamp = arr[i].timestamp;
+        let currentTimestamp = arr[i].timestamp;
+        if (currentTimestamp > currentTime) {
+            currentTimestamp = -1;
+            arr[i].timestamp = -1;
+        }
         if (currentTimestamp > highestTimestamp) {
             highestTimestamp = currentTimestamp;
         }
     }
+
     return highestTimestamp;
 }
 
