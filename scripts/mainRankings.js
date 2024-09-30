@@ -64,13 +64,6 @@ const rankListMain = [{
     gameMode: "Standard"
 },
 {
-    id: "5x5 relay",
-    width: 5,
-    height: 5,
-    avglen: 1,
-    gameMode: "2-N relay"
-},
-{
     id: "6x6 single",
     width: 6,
     height: 6,
@@ -127,6 +120,13 @@ const rankListMain = [{
     gameMode: "Standard"
 },
 {
+    id: "8x8 ao5",
+    width: 8,
+    height: 8,
+    avglen: 5,
+    gameMode: "Standard"
+},
+{
     id: "9x9 single",
     width: 9,
     height: 9,
@@ -143,13 +143,25 @@ const rankListMain = [{
 ];
 
 const customRankButtonsExamples = [{
+    "[V] MAIN 25": "3x3 ao50, 3x3 ao100, 3x3 x42, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x10, 5x5 ao5, 5x5 ao12, 6x6 Single, 6x6 ao5, 6x6 ao12, 6x6 relay, 7x7 Single, 7x7 ao5, 7x7 ao12, 7x7 relay, 8x8 Single, 8x8 ao5, 9x9 Single, 10x10 Single, 12x12 Single, 16x16 Single, 20x20 Single"
+},
+{
+    "[V] EXTENDED 40": "3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x42, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x10, 4x4 x42, 5x5 Single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x5, 5x5 x10, 5x5 relay, 5x5 Eut, 6x6 Single, 6x6 ao5, 6x6 ao12, 6x6 relay, 7x7 Single, 7x7 ao5, 7x7 ao12, 7x7 relay, 8x8 Single, 8x8 ao5, 8x8 ao12, 8x8 relay, 9x9 Single, 9x9 ao5, 10x10 Single, 10x10 ao5, 10x10 relay, 12x12 Single, 16x16 Single, 20x20 Single, 30x30 Single"
+},
+{
+    "[V] ADVANCED 69": "3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x10, 3x3 x25, 3x3 x42, 3x3 x100, 3x3 bld-ao5, 3x3 bld-ao12, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x10, 4x4 x25, 4x4 x42, 4x4 x100, 4x4 Eut, 4x4 bld, 5x5 Single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x3, 5x5 x5, 5x5 x10, 5x5 relay, 5x5 Eut, 6x6 Single, 6x6 ao5, 6x6 ao12, 6x6 ao50, 6x6 ao100, 6x6 x3, 6x6 x10, 6x6 relay, 6x6 Eut, 7x7 Single, 7x7 ao5, 7x7 ao12, 7x7 ao50, 7x7 x3, 7x7 relay, 7x7 Eut, 8x8 Single, 8x8 ao5, 8x8 ao12, 8x8 x3, 8x8 relay, 9x9 Single, 9x9 ao5, 9x9 ao12, 9x9 relay, 10x10 Single, 10x10 ao5, 10x10 ao12, 10x10 relay, 11x11 Single, 12x12 Single, 13x13 Single, 14x14 Single, 15x15 Single, 16x16 Single, 17x17 Single, 18x18 Single, 19x19 Single, 20x20 Single, 30x30 Single"
+},
+{
+    "[V] ULTIMATE 90": "3x3 ao5, 3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x10, 3x3 x25, 3x3 x42, 3x3 x100, 3x3 bld-ao5, 3x3 bld-ao12, 3x3 bld-ao50, 4x4 Single, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x5, 4x4 x10, 4x4 x25, 4x4 x42, 4x4 x100, 4x4 relay, 4x4 Eut, 4x4 bld, 5x5 Single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x3, 5x5 x5, 5x5 x10, 5x5 x25, 5x5 x42, 5x5 relay, 5x5 Hrel, 5x5 Wrel, 5x5 Eut, 6x6 Single, 6x6 ao5, 6x6 ao12, 6x6 ao50, 6x6 ao100, 6x6 x3, 6x6 x10, 6x6 relay, 6x6 Hrel, 6x6 Wrel, 6x6 Eut, 7x7 Single, 7x7 ao5, 7x7 ao12, 7x7 ao50, 7x7 ao100, 7x7 x3, 7x7 relay, 7x7 Hrel, 7x7 Wrel, 7x7 Eut, 8x8 Single, 8x8 ao5, 8x8 ao12, 8x8 ao50, 8x8 x3, 8x8 relay, 8x8 Hrel, 8x8 Wrel, 9x9 Single, 9x9 ao5, 9x9 ao12, 9x9 x3, 9x9 relay, 10x10 Single, 10x10 ao5, 10x10 ao12, 10x10 relay, 11x11 Single, 12x12 Single, 12x12 ao5, 13x13 Single, 14x14 Single, 15x15 Single, 16x16 Single, 16x16 ao5, 17x17 Single, 18x18 Single, 19x19 Single, 20x20 Single, 30x30 Single, 32x32 Single"
+},
+{
     "Classic 30": "3x3 ao5, 3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x10, 3x3 x42, 4x4 single, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x10, 4x4 x42, 4x4 relay, 5x5 single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 relay, 6x6 single, 6x6 ao5, 6x6 ao12, 6x6 relay, 7x7 single, 7x7 ao5, 7x7 relay, 8x8 single, 8x8 ao5, 9x9 single, 10x10 single"
 },
 {
-    "Extended 100": "3x3 ao5, 3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x5, 3x3 x10, 3x3 x42, 3x3 x100, 3x3 rel-ao5, 3x3 rel-ao12, 3x3 Wrel-ao5, 3x3 Wrel-ao12, 3x3 Hrel-ao5, 3x3 Hrel-ao12, 3x3 Eut-ao5, 3x3 Eut-ao12, 3x3 Eut-ao50, 4x4 single, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x5, 4x4 x10, 4x4 x42, 4x4 x100, 4x4 relay, 4x4 rel-ao5, 4x4 rel-ao12, 4x4 Wrel, 4x4 Wrel-ao5, 4x4 Wrel-ao12, 4x4 Hrel, 4x4 Hrel-ao5, 4x4 Hrel-ao12, 4x4 Eut, 4x4 Eut-ao5, 4x4 Eut-ao12, 5x5 single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x5, 5x5 x10, 5x5 x42, 5x5 relay, 5x5 rel-ao5, 5x5 rel-ao12, 5x5 Wrel, 5x5 Wrel-ao5, 5x5 Wrel-ao12, 5x5 Hrel, 5x5 Hrel-ao5, 5x5 Hrel-ao12, 5x5 Eut, 5x5 Eut-ao5, 5x5 Eut-ao12, 6x6 single, 6x6 ao5, 6x6 ao12, 6x6 ao50, 6x6 ao100, 6x6 x5, 6x6 x10, 6x6 relay, 6x6 rel-ao5, 6x6 Wrel, 6x6 Wrel-ao5, 6x6 Hrel, 6x6 Hrel-ao5, 6x6 Eut, 6x6 Eut-ao5, 7x7 single, 7x7 ao5, 7x7 ao12, 7x7 ao50, 7x7 x5, 7x7 relay, 7x7 rel-ao5, 7x7 Wrel, 7x7 Wrel-ao5, 7x7 Hrel, 7x7 Hrel-ao5, 8x8 single, 8x8 ao5, 8x8 ao12, 8x8 x5, 8x8 relay, 8x8 Wrel, 8x8 Hrel, 9x9 single, 9x9 ao5, 9x9 relay, 10x10 single, 10x10 ao5, 10x10 relay, 12x12 single, 16x16 single, 20x20 single"
+    "Ext. 100 (old)": "3x3 ao5, 3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x5, 3x3 x10, 3x3 x42, 3x3 x100, 3x3 rel-ao5, 3x3 rel-ao12, 3x3 Wrel-ao5, 3x3 Wrel-ao12, 3x3 Hrel-ao5, 3x3 Hrel-ao12, 3x3 Eut-ao5, 3x3 Eut-ao12, 3x3 Eut-ao50, 4x4 single, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x5, 4x4 x10, 4x4 x42, 4x4 x100, 4x4 relay, 4x4 rel-ao5, 4x4 rel-ao12, 4x4 Wrel, 4x4 Wrel-ao5, 4x4 Wrel-ao12, 4x4 Hrel, 4x4 Hrel-ao5, 4x4 Hrel-ao12, 4x4 Eut, 4x4 Eut-ao5, 4x4 Eut-ao12, 5x5 single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x5, 5x5 x10, 5x5 x42, 5x5 relay, 5x5 rel-ao5, 5x5 rel-ao12, 5x5 Wrel, 5x5 Wrel-ao5, 5x5 Wrel-ao12, 5x5 Hrel, 5x5 Hrel-ao5, 5x5 Hrel-ao12, 5x5 Eut, 5x5 Eut-ao5, 5x5 Eut-ao12, 6x6 single, 6x6 ao5, 6x6 ao12, 6x6 ao50, 6x6 ao100, 6x6 x5, 6x6 x10, 6x6 relay, 6x6 rel-ao5, 6x6 Wrel, 6x6 Wrel-ao5, 6x6 Hrel, 6x6 Hrel-ao5, 6x6 Eut, 6x6 Eut-ao5, 7x7 single, 7x7 ao5, 7x7 ao12, 7x7 ao50, 7x7 x5, 7x7 relay, 7x7 rel-ao5, 7x7 Wrel, 7x7 Wrel-ao5, 7x7 Hrel, 7x7 Hrel-ao5, 8x8 single, 8x8 ao5, 8x8 ao12, 8x8 x5, 8x8 relay, 8x8 Wrel, 8x8 Hrel, 9x9 single, 9x9 ao5, 9x9 relay, 10x10 single, 10x10 ao5, 10x10 relay, 12x12 single, 16x16 single, 20x20 single"
 },
 {
-    "Extended 69 (new)": "3x3 ao5, 3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x10, 3x3 x42, 3x3 x100, 4x4 single, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x10, 4x4 x42, 4x4 x100, 4x4 relay, 4x4 rel-ao5, 4x4 Eut, 5x5 single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x10, 5x5 relay, 5x5 rel-ao5, 5x5 Eut, 6x6 single, 6x6 ao5, 6x6 ao12, 6x6 ao50, 6x6 x10, 6x6 relay, 6x6 Wrel, 6x6 Hrel, 6x6 Eut, 7x7 single, 7x7 ao5, 7x7 ao12, 7x7 ao50, 7x7 relay, 7x7 Wrel, 7x7 Hrel, 7x7 Eut, 8x8 single, 8x8 ao5, 8x8 ao12, 8x8 relay, 8x8 Wrel, 8x8 Hrel, 9x9 single, 9x9 ao5, 9x9 ao12, 9x9 relay, 10x10 single, 10x10 ao5, 10x10 ao12, 10x10 relay, 11x11 single, 12x12 single, 13x13 single, 14x14 single, 15x15 single, 16x16 single, 17x17 single, 18x18 single, 19x19 single, 20x20 single, 30x30 single"
+    "69 Test": "3x3 ao5, 3x3 ao12, 3x3 ao50, 3x3 ao100, 3x3 x10, 3x3 x42, 3x3 x100, 4x4 single, 4x4 ao5, 4x4 ao12, 4x4 ao50, 4x4 ao100, 4x4 x10, 4x4 x42, 4x4 x100, 4x4 relay, 4x4 rel-ao5, 4x4 Eut, 5x5 single, 5x5 ao5, 5x5 ao12, 5x5 ao50, 5x5 ao100, 5x5 x10, 5x5 relay, 5x5 rel-ao5, 5x5 Eut, 6x6 single, 6x6 ao5, 6x6 ao12, 6x6 ao50, 6x6 x10, 6x6 relay, 6x6 Wrel, 6x6 Hrel, 6x6 Eut, 7x7 single, 7x7 ao5, 7x7 ao12, 7x7 ao50, 7x7 relay, 7x7 Wrel, 7x7 Hrel, 7x7 Eut, 8x8 single, 8x8 ao5, 8x8 ao12, 8x8 relay, 8x8 Wrel, 8x8 Hrel, 9x9 single, 9x9 ao5, 9x9 ao12, 9x9 relay, 10x10 single, 10x10 ao5, 10x10 ao12, 10x10 relay, 11x11 single, 12x12 single, 13x13 single, 14x14 single, 15x15 single, 16x16 single, 17x17 single, 18x18 single, 19x19 single, 20x20 single, 30x30 single"
 },
 {
     "11x11 - 20x20 singles": "11x11, 12x12, 13x13, 14x14, 15x15, 16x16, 17x17, 18x18, 19x19, 20x20"
