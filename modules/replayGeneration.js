@@ -717,6 +717,12 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
     rewindSlider.addEventListener('input', manualMoving);
     const animationButton = document.createElement('button');
     const settingsButton = document.createElement('button');
+
+    const nextMoveButton = document.createElement('button');
+    const prevMoveButton = document.createElement('button');
+    nextMoveButton.textContent = ">"
+    prevMoveButton.textContent = "<"
+
     settingsButton.style.border = "0.1vh solid #fff";
     const closeButton = document.createElement('button');
     closeButton.textContent = closeReaplyText;
@@ -779,8 +785,23 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         animationButton.classList.add('pause-button');
     }
     animationButton.addEventListener('click', toggleAnimationButton);
+    nextMoveButton.addEventListener('click', function(){oneManual(1)});
+    prevMoveButton.addEventListener('click', function(){oneManual(-1)});
+    function oneManual(step){
+        stopAnimation();
+        rewindSlider.value = parseInt(rewindSlider.value) + step;
+        manualMoving();
+    }
+
+    rewindContainer.appendChild(prevMoveButton);
+    prevMoveButton.style.width = "150px";
+    nextMoveButton.style.width = "150px";
+    rewindContainer.appendChild(nextMoveButton);
+    rewindContainer.appendChild(document.createElement('br'));
     rewindContainer.appendChild(animationButton);
     rewindContainer.appendChild(settingsButton);
+    
+
     if (solution === "") {
         popupContainerSettings.style.display = "none";
         popupContainerCustom.appendChild(closeButton);
@@ -795,6 +816,8 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
          
         animationID = setInterval(updateAnimation, intervalTimeMS);
     }
+    
+
     function manualMoving() {
         stopAnimation();
         nextMoveCounter.innerHTML = "";
