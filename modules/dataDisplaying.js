@@ -445,6 +445,13 @@ function createSheetNxM(WRList) {
                     if (scoreType === "Time" && result.time > 59999) {
                         extraInfo = " " + formatTime(result.time);
                     }
+                    if (request.nameFilter !== ""){
+                        if (isWR) {
+                            extraInfo += "<br>WR";
+                        } else {
+                            extraInfo += `<br>${percentage.toFixed(7)}%`;
+                        }
+                    }
                     cell.addEventListener('mouseover', () => {
                         tooltip.innerHTML = newSize + "<br>" + getControlsAndDate(result.timestamp, result.controls) + "<br>" + extraInfo;
                         cell.classList.add("highlightedCell");
