@@ -585,7 +585,7 @@ function createSheetRankings(playerScores) {
                             changeNameFilter(playerScore.name);
                         });
                         const playerPowerCell = document.createElement('td');
-                        playerPowerCell.textContent = playerScore.power.toFixed(1) + "%";
+                        playerPowerCell.textContent = playerScore.power.toFixed(3) + "%";
                         playerPlaceCell.classList.add(category);
                         playerNameCell.classList.add(category);
                         playerNameCell.classList.add("nameCell");
