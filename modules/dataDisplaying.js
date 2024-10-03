@@ -1407,9 +1407,9 @@ function generateFormattedString(request) {
     if(latestRecordTime){
         let timeAgo = getTimeAgo(new Date(latestRecordTime));
         formattedParts.push(`<span class="leaderboardUpdateSpan">${lastLeaderboardUpdateString} <span style="color: #ffffff">${timeAgo}</span></span>`);
-        if (timeAgo.includes("days")){
-            formattedParts.push(`<span class="leaderboardUpdateSpan"><a style="color: red" href="${leaderboardUpdatesInfoLink}">${leaderboardUpdatesInfoText}</a></span>`);
-        }
+       // if (timeAgo.includes("days")){
+            formattedParts.push(`<span class="leaderboardUpdateSpan"><p style="color: red">${leaderboardUpdatesInfoText}</p></span>`);
+      //  }
     }
     formattedParts.push(`<span class="leaderboardUpdateSpan"><a style="color: #FF88BB" href="${submitVideoLink}">${submitVideoText}</a></span>`);
     const finalString = `${formattedParts.join(' ')}`;

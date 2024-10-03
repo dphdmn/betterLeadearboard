@@ -89,6 +89,7 @@ function filterDataByRequest(data, request) {
         return data.filter(entry => {
             return (
                 (request.leaderboardType === entry.leaderboardType) &&
+                //(entry.nameFilter != "daanbe") &&
                 (request.displayType === entry.displayType)
             );
         });
