@@ -501,6 +501,17 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
         let customScramble = -1;
         let newTPS = tps;
         function changeReplay() {
+            let sol = customSoltuionArea.value
+            if (sol.includes("?r=")){
+                const customReplayData = decompressStringToArray(new URL(sol).searchParams.get('r'));
+                const customSolution = customReplayData[0];
+                const customTPS = customReplayData[1];
+                const customReplayScramble = customReplayData[2];
+                const fakeTimes = customReplayData[3];
+                const customReplayMatrix = scrambleToPuzzle(customReplayScramble);
+                makeReplay(customSolution, -1, customTPS, customReplayMatrix[0].length, customReplayMatrix.length, "Custom", customReplayScramble, fakeTimes);
+                return;
+            } 
             newSolution = customSoltuionArea.value.replace(/[^RULD0123456789]/g, '').replace(/\s/g, '');
             let invalidScrambleState = false;
             if (customScrambleArea.value !== '') {
@@ -725,6 +736,7 @@ function animateMatrix(scoreTitle, matrix, solution, tps, allFringeSchemes, grid
 
     settingsButton.style.border = "0.1vh solid #fff";
     const closeButton = document.createElement('button');
+    closeButton.setAttribute('id', 'closeReplayButton');
     closeButton.textContent = closeReaplyText;
     closeButton.style.backgroundColor = "rgb(200, 0, 0)";
     closeButton.style.border = "0.1vh solid #000";
