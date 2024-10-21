@@ -58,19 +58,11 @@ function makeReplay(solution, event = -1, tps, width = -1, height = -1, scoreTit
     }
 }
 
-//"Public" function to check for a solvedata of a custom replay in URL as "r" parameter
 function customReplayCheck() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("r")) {
-        loadingDataNormally = false;
-        loadingPlaceHolder.style.display = "none";
-        const customReplayData = decompressStringToArray(urlParams.get("r"));
-        const customSolution = customReplayData[0];
-        const customTPS = customReplayData[1];
-        const customReplayScramble = customReplayData[2];
-        const fakeTimes = customReplayData[3];
-        const customReplayMatrix = scrambleToPuzzle(customReplayScramble);
-        makeReplay(customSolution, -1, customTPS, customReplayMatrix[0].length, customReplayMatrix.length, "Custom", customReplayScramble, fakeTimes);
+        const rParam = urlParams.get("r");
+        window.location.href = `https://slidysim.online/replay?r=${encodeURIComponent(rParam)}`;
     }
 }
 
